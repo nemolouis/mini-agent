@@ -1,0 +1,5 @@
+{
+  "prompt": "Monthly schedules produce wrong dates near month ends, in some years, and on weekends. The intended behaviour is described in the docstrings. Fix the bugs so the tests pass.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

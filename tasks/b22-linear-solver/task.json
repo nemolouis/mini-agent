@@ -1,0 +1,5 @@
+{
+  "prompt": "solve() fails or returns wrong results for singular, inconsistent and under-determined systems, and loses precision. Its contract is in the docstring. Fix it so the tests pass.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

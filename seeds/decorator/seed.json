@@ -1,0 +1,13 @@
+{
+  "name": "decorator",
+  "mutate": [
+    "src/decorator/__init__.py"
+  ],
+  "tests": [
+    "tests/test.py"
+  ],
+  "test_cmd": "PYTHONPATH=src python -m pytest -q",
+  "origin": "pypi:decorator==5.3.1 sha256:4cbcdd55a6efadb9dbea26b858f4fb3264567b52d69ca0d25b721b553f60ea82",
+  "license": "BSD-2-Clause",
+  "split": "train"
+}

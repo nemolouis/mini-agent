@@ -1,0 +1,5 @@
+{
+  "prompt": "The document undo/redo behaves incorrectly in several situations (marks, redo history, grouped edits, rollback). The intended behaviour is described in the docstrings of document.py. Fix it.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

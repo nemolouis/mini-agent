@@ -1,0 +1,13 @@
+{
+  "name": "ctx3k",
+  "model": "deepseek-flash",
+  "temperature": 0.0,
+  "max_steps": 50,
+  "max_tokens": 16384,
+  "context_limit": 3000,
+  "keep_recent": 4,
+  "disabled_tools": [],
+  "base_url": "https://api.deepseek.com",
+  "api_key_env": "DEEPSEEK_API_KEY",
+  "hypothesis": "PREDICTION: with context_limit=3000 almost every run compacts. Mean steps rises and pass rate drops 10-30 points; failures are tests_failed_after_edit caused by lost details after summarisation."
+}

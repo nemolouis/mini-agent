@@ -1,0 +1,7 @@
+[
+  {
+    "name": "notes",
+    "command": ["python", "-m", "miniagent.mcp.notes_server", "--root", "examples/notes"],
+    "allow": ["list_notes", "read_note", "search_notes"]
+  }
+]

@@ -1,0 +1,5 @@
+{
+  "prompt": "diff() does not produce minimal edit scripts and does not follow the ordering rule in its docstring; it must also stay fast on large inputs with few changes. Fix it so the tests pass.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

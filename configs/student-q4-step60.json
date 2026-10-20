@@ -1,0 +1,17 @@
+{
+  "temperature": 0.0,
+  "max_steps": 30,
+  "max_tokens": 1024,
+  "context_limit": 20000,
+  "keep_recent": 8,
+  "disabled_tools": [],
+  "sandbox": true,
+  "log_reasoning": false,
+  "model": "default_model",
+  "api_key_env": "MLX_API_KEY",
+  "api_timeout": 900,
+  "api_retries": 1,
+  "name": "student-q4-step60",
+  "base_url": "http://127.0.0.1:8081/v1",
+  "hypothesis": "the same model with the LoRA adapter of step 60 of the QLoRA run (validation loss 0.938 against 2.103 untrained, 7 validation examples) on the dev split. The run diverged after step 72; step 60 was saved before that. Trained only on trajectories up to 4096 tokens (152 examples)."
+}

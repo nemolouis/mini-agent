@@ -1,0 +1,5 @@
+{
+  "prompt": "The regex engine only supports part of the documented syntax and search() does not return the leftmost match with the documented preference order. Implement the documented behaviour so the tests pass.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

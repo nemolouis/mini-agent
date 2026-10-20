@@ -1,0 +1,24 @@
+{
+  "n_tasks": 6,
+  "n_runs": 18,
+  "pass_rate": 0.8888888888888888,
+  "pass_rate_ci95": [
+    0.6666666666666666,
+    1.0
+  ],
+  "mean_steps": 20.055555555555557,
+  "mean_input_tokens": 297671.8888888889,
+  "mean_cache_read_tokens": 292366.22222222225,
+  "mean_output_tokens": 17884.11111111111,
+  "mean_reasoning_tokens": 13927.388888888889,
+  "mean_cost_usd_off_peak": 0.045344336888888885,
+  "mean_cost_usd_peak": 0.09068867377777777,
+  "mean_wall_s": 235.92000000000002,
+  "mean_tool_errors": 0.0,
+  "runs_with_compaction": 0,
+  "tampered_runs": 0,
+  "failure_classes": {
+    "pass": 16,
+    "max_steps": 2
+  }
+}

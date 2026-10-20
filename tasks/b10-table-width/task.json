@@ -1,0 +1,5 @@
+{
+  "prompt": "Tables containing non-ASCII text (e.g. Chinese, accented letters) or coloured text are misaligned, and long cells are truncated badly. Fix the rendering. The intended behaviour is described in the docstrings.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

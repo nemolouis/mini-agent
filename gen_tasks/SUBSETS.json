@@ -1,0 +1,38 @@
+{
+  "_comment": "Pilot for trajectory synthesis (stage 3): 30 train-split generated tasks, 2-3 per seed library, families mixed. Fixed on 2026-10-18 before any model ran on them.",
+  "pilot30": {
+    "why": "measure pass rate, steps and cost per run before deciding how many trajectories to synthesise",
+    "tasks": [
+      "g-boltons-002-const",
+      "g-boltons-013-loopctl",
+      "g-boltons-023-boolop",
+      "g-cachetools-002-const",
+      "g-cachetools-003-boolop",
+      "g-cachetools-006-compare",
+      "g-decorator-004-compare",
+      "g-decorator-008-arith",
+      "g-decorator-009-negate",
+      "g-inflection-007-arith",
+      "g-inflection-009-const",
+      "g-inflection-011-delete",
+      "g-ordered_set-001-arith",
+      "g-ordered_set-006-boolop",
+      "g-ordered_set-008-const",
+      "g-parse-005-boolop",
+      "g-parse-022-negate",
+      "g-parse-023-arith",
+      "g-seqtools-009-compare",
+      "g-seqtools-019-arith",
+      "g-six-001-negate",
+      "g-six-002-const",
+      "g-tabulate-012-compare",
+      "g-tabulate-015-negate",
+      "g-termcolor-002-delete",
+      "g-termcolor-005-const",
+      "g-textkit-008-boolop",
+      "g-textkit-014-arith",
+      "g-toolz-003-compare",
+      "g-toolz-004-arith"
+    ]
+  }
+}

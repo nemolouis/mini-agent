@@ -1,0 +1,50 @@
+{
+  "run_id": "20261013-194844-flash",
+  "config": {
+    "name": "flash",
+    "model": "deepseek-flash",
+    "temperature": 0.0,
+    "max_steps": 50,
+    "max_tokens": 16384,
+    "context_limit": 100000,
+    "keep_recent": 8,
+    "disabled_tools": [],
+    "hypothesis": "model comparison with explicit model id; max_tokens 16384 (4096 truncated thinking), max_steps 50 (30 exhausted by slower explorers)",
+    "base_url": "https://api.deepseek.com",
+    "api_key_env": "DEEPSEEK_API_KEY"
+  },
+  "config_hash": "818f1f0e69",
+  "split": "dev",
+  "repeat": 3,
+  "date": "2026-10-13 19:48:44",
+  "tasks": [
+    "b02-month-recurrence",
+    "b05-interpolate",
+    "b08-csv-loader",
+    "b09-sliding-window",
+    "b12-sessions",
+    "b13-interval-set",
+    "b15-cron-next",
+    "b16-text-diff",
+    "b19-regex-engine",
+    "b21-timer-queue",
+    "b23-meeting-slots",
+    "b25-patch-apply-v2",
+    "b26-linear-solver-v2"
+  ],
+  "task_hashes": {
+    "b02-month-recurrence": "9b9b3d627fdf00c3",
+    "b05-interpolate": "9e83cf166606d991",
+    "b08-csv-loader": "f3ae4859cbce0cec",
+    "b09-sliding-window": "ff7b36c7a5dbbf5f",
+    "b12-sessions": "e0ca0408004f7295",
+    "b13-interval-set": "43cf1252a0245077",
+    "b15-cron-next": "0ae340c12260ebad",
+    "b16-text-diff": "ac76057c78d3afee",
+    "b19-regex-engine": "676c9c80c6fe6c7b",
+    "b21-timer-queue": "dc765c9a2aa353b7",
+    "b23-meeting-slots": "f9d0154e50b95851",
+    "b25-patch-apply-v2": "77b755213ebff7b1",
+    "b26-linear-solver-v2": "483c4ba6824119ad"
+  }
+}

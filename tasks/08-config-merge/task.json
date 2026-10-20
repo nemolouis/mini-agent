@@ -1,0 +1,4 @@
+{
+  "prompt": "Overriding one nested setting loses its sibling settings, and changes seem to leak between calls to load(). Fix it so the tests pass.",
+  "test_cmd": "pytest -q"
+}

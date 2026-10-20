@@ -1,0 +1,15 @@
+{
+  "name": "gen-pilot-flash",
+  "model": "deepseek-flash",
+  "temperature": 0.0,
+  "max_steps": 30,
+  "max_tokens": 16384,
+  "context_limit": 100000,
+  "keep_recent": 8,
+  "disabled_tools": [],
+  "hypothesis": "stage-3 pilot: DeepSeek flash as the trajectory teacher on the same 30 train-split generated tasks, for comparison with gen-pilot-g35 (needs account balance)",
+  "base_url": "https://api.deepseek.com",
+  "api_key_env": "DEEPSEEK_API_KEY",
+  "sandbox": true,
+  "log_reasoning": true
+}

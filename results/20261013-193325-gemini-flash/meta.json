@@ -1,0 +1,32 @@
+{
+  "run_id": "20261013-193325-gemini-flash",
+  "config": {
+    "name": "gemini-flash",
+    "model": "gemini-3.8-flash",
+    "temperature": null,
+    "max_steps": 50,
+    "max_tokens": 16384,
+    "context_limit": 100000,
+    "keep_recent": 8,
+    "disabled_tools": [],
+    "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+    "api_key_env": "GEMINI_API_KEY",
+    "api_retries": 8,
+    "api_timeout": 300,
+    "hypothesis": "Gemini 3.8 Flash, provider defaults (temperature left unset: Google recommends the default for Gemini 3; thinking cannot be turned off)"
+  },
+  "config_hash": "fc14c213f2",
+  "split": "dev",
+  "repeat": 1,
+  "date": "2026-10-13 19:33:25",
+  "tasks": [
+    "b02-month-recurrence",
+    "b13-interval-set",
+    "b15-cron-next"
+  ],
+  "task_hashes": {
+    "b02-month-recurrence": "9b9b3d627fdf00c3",
+    "b13-interval-set": "43cf1252a0245077",
+    "b15-cron-next": "0ae340c12260ebad"
+  }
+}

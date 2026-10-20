@@ -1,0 +1,14 @@
+{
+  "name": "termcolor",
+  "mutate": [
+    "src/termcolor/__init__.py",
+    "src/termcolor/termcolor.py"
+  ],
+  "tests": [
+    "tests/test_termcolor.py"
+  ],
+  "test_cmd": "PYTHONPATH=src python -m pytest -q",
+  "origin": "pypi:termcolor==3.3.0 sha256:348871ca648ec6a9a983a13ab626c0acce02f515b9e1983332b17af7979521c5",
+  "license": "MIT",
+  "split": "train"
+}

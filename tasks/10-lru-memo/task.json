@@ -1,0 +1,4 @@
+{
+  "prompt": "The memoize decorator recomputes values it should still have cached and keeps more entries than its capacity. Find and fix the root cause so the tests pass.",
+  "test_cmd": "pytest -q"
+}

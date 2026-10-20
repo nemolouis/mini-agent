@@ -1,0 +1,5 @@
+{
+  "prompt": "Version comparison, parsing and range matching in this library don't fully follow the specification in docs/SPEC.md. Bring the implementation into conformance with the spec.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

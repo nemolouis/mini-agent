@@ -1,0 +1,5 @@
+{
+  "prompt": "Session reports are wrong for some logs: sessions are split or merged incorrectly and durations are off. The intended behaviour is described in the docstrings. Fix the implementation.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

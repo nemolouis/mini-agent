@@ -1,0 +1,4 @@
+{
+  "prompt": "parse_duration should convert strings like '1h30m', '45s', '2h' into seconds. Some inputs give wrong answers. Fix it so tests pass.",
+  "test_cmd": "pytest -q"
+}

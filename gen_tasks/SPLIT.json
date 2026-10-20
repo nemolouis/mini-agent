@@ -1,0 +1,1413 @@
+{
+  "tasks": {
+    "g-boltons-000-arith": {
+      "hash": "cb2d2024e82e3039",
+      "split": "train"
+    },
+    "g-boltons-001-negate": {
+      "hash": "0cc0c5ea0497dbca",
+      "split": "train"
+    },
+    "g-boltons-002-const": {
+      "hash": "f45eb5f35dd903e9",
+      "split": "train"
+    },
+    "g-boltons-003-loopctl": {
+      "hash": "7a0b46492ba79d34",
+      "split": "train"
+    },
+    "g-boltons-004-boolop": {
+      "hash": "93d6956c6da2dbdd",
+      "split": "train"
+    },
+    "g-boltons-005-const": {
+      "hash": "888a65fb575419e1",
+      "split": "train"
+    },
+    "g-boltons-006-delete": {
+      "hash": "4ffab7ead3d859a2",
+      "split": "train"
+    },
+    "g-boltons-007-arith": {
+      "hash": "ee3e320fa03cd593",
+      "split": "train"
+    },
+    "g-boltons-008-negate": {
+      "hash": "db98bfe8e0dbccf3",
+      "split": "train"
+    },
+    "g-boltons-009-compare": {
+      "hash": "54972370c272a50f",
+      "split": "train"
+    },
+    "g-boltons-010-arith": {
+      "hash": "a30ae557f7e6a676",
+      "split": "train"
+    },
+    "g-boltons-011-boolop": {
+      "hash": "29340e46dde22cc8",
+      "split": "train"
+    },
+    "g-boltons-012-negate": {
+      "hash": "2e1fb7ac7d5d5a0e",
+      "split": "train"
+    },
+    "g-boltons-013-loopctl": {
+      "hash": "cc4672b012a93f78",
+      "split": "train"
+    },
+    "g-boltons-014-negate": {
+      "hash": "4c4bb20fbb9801ea",
+      "split": "train"
+    },
+    "g-boltons-015-delete": {
+      "hash": "6142d7afbe4ac53f",
+      "split": "train"
+    },
+    "g-boltons-016-const": {
+      "hash": "28bedff96550f175",
+      "split": "train"
+    },
+    "g-boltons-017-delete": {
+      "hash": "1eb87f69c9f75a63",
+      "split": "train"
+    },
+    "g-boltons-018-boolop": {
+      "hash": "3b5a8fce9b4e8ac1",
+      "split": "train"
+    },
+    "g-boltons-019-negate": {
+      "hash": "2b5b884d4e5cfce6",
+      "split": "train"
+    },
+    "g-boltons-020-delete": {
+      "hash": "1a29e7f5afb5ad83",
+      "split": "train"
+    },
+    "g-boltons-021-compare": {
+      "hash": "3fc0664df5bcdcd6",
+      "split": "train"
+    },
+    "g-boltons-022-arith": {
+      "hash": "c7654aa7566cb2aa",
+      "split": "train"
+    },
+    "g-boltons-023-boolop": {
+      "hash": "029b7baf1b6c4504",
+      "split": "train"
+    },
+    "g-cachetools-000-arith": {
+      "hash": "db2fd4f6ce21a130",
+      "split": "train"
+    },
+    "g-cachetools-001-boolop": {
+      "hash": "5cc5ee0ccbf66ed8",
+      "split": "train"
+    },
+    "g-cachetools-002-const": {
+      "hash": "57eb18ed881017c7",
+      "split": "train"
+    },
+    "g-cachetools-003-boolop": {
+      "hash": "14f90ef8e77f575d",
+      "split": "train"
+    },
+    "g-cachetools-004-compare": {
+      "hash": "2d71280ec69d41c5",
+      "split": "train"
+    },
+    "g-cachetools-005-const": {
+      "hash": "d70ea684e2afd920",
+      "split": "train"
+    },
+    "g-cachetools-006-compare": {
+      "hash": "e84ad7a97012ae4d",
+      "split": "train"
+    },
+    "g-cachetools-007-compare": {
+      "hash": "3c0e5ef79624d6fc",
+      "split": "train"
+    },
+    "g-cachetools-008-negate": {
+      "hash": "33c66bf4242a181d",
+      "split": "train"
+    },
+    "g-cachetools-009-const": {
+      "hash": "4e10b18f186744c5",
+      "split": "train"
+    },
+    "g-cachetools-010-delete": {
+      "hash": "d91933850c232632",
+      "split": "train"
+    },
+    "g-cachetools-011-arith": {
+      "hash": "484aed63990a0944",
+      "split": "train"
+    },
+    "g-cachetools-012-negate": {
+      "hash": "fb25a6dd6bdc21ba",
+      "split": "train"
+    },
+    "g-cachetools-013-delete": {
+      "hash": "461b42cf544eee59",
+      "split": "train"
+    },
+    "g-cachetools-014-negate": {
+      "hash": "b3aa6f4784fbeeb5",
+      "split": "train"
+    },
+    "g-cachetools-015-compare": {
+      "hash": "1dd8a8148f344248",
+      "split": "train"
+    },
+    "g-cachetools-016-compare": {
+      "hash": "d7b1616f7f30ffdb",
+      "split": "train"
+    },
+    "g-cachetools-017-const": {
+      "hash": "7f705e91723517e7",
+      "split": "train"
+    },
+    "g-cachetools-018-compare": {
+      "hash": "04f478e2f84ac14d",
+      "split": "train"
+    },
+    "g-cachetools-019-const": {
+      "hash": "b306fadcb2e46cca",
+      "split": "train"
+    },
+    "g-cachetools-020-delete": {
+      "hash": "11a9a1a4a19fc487",
+      "split": "train"
+    },
+    "g-cachetools-021-compare": {
+      "hash": "8292ad513a222cdf",
+      "split": "train"
+    },
+    "g-cachetools-022-compare": {
+      "hash": "33d4dbd51bbbee93",
+      "split": "train"
+    },
+    "g-cachetools-023-compare": {
+      "hash": "f3a67cafe8e0fd74",
+      "split": "train"
+    },
+    "g-colorama-000-negate": {
+      "hash": "6f5d9a11088bfdc8",
+      "split": "dev"
+    },
+    "g-colorama-001-compare": {
+      "hash": "eefb77adcb23ff64",
+      "split": "dev"
+    },
+    "g-colorama-002-const": {
+      "hash": "e02a27840812d398",
+      "split": "dev"
+    },
+    "g-colorama-003-boolop": {
+      "hash": "afac309bf6313bf9",
+      "split": "dev"
+    },
+    "g-colorama-004-delete": {
+      "hash": "6c1e646f1a249469",
+      "split": "dev"
+    },
+    "g-colorama-005-boolop": {
+      "hash": "320e570a49aaa0b3",
+      "split": "dev"
+    },
+    "g-colorama-006-delete": {
+      "hash": "b1011cddce7fa58e",
+      "split": "dev"
+    },
+    "g-colorama-007-const": {
+      "hash": "30a8d4281a5f463b",
+      "split": "dev"
+    },
+    "g-colorama-008-const": {
+      "hash": "4690855a673a2c70",
+      "split": "dev"
+    },
+    "g-colorama-009-compare": {
+      "hash": "81593c86c400b0ec",
+      "split": "dev"
+    },
+    "g-colorama-010-boolop": {
+      "hash": "52b7f2f5aa49f56a",
+      "split": "dev"
+    },
+    "g-colorama-011-negate": {
+      "hash": "1a1b86bc13c10c41",
+      "split": "dev"
+    },
+    "g-colorama-012-compare": {
+      "hash": "30ae0fb19e3e0a0b",
+      "split": "dev"
+    },
+    "g-colorama-013-boolop": {
+      "hash": "01558646ec2fe1b4",
+      "split": "dev"
+    },
+    "g-colorama-014-compare": {
+      "hash": "76612ff93c861e94",
+      "split": "dev"
+    },
+    "g-colorama-015-boolop": {
+      "hash": "a98aa2516763332f",
+      "split": "dev"
+    },
+    "g-colorama-016-delete": {
+      "hash": "efdcbd12d7c6701d",
+      "split": "dev"
+    },
+    "g-colorama-017-arith": {
+      "hash": "9095ee100f3ea898",
+      "split": "dev"
+    },
+    "g-colorama-018-delete": {
+      "hash": "e333dfa136bf3579",
+      "split": "dev"
+    },
+    "g-colorama-019-delete": {
+      "hash": "6a0c0d5bdaac40e8",
+      "split": "dev"
+    },
+    "g-colorama-020-negate": {
+      "hash": "9869e36d27091ce9",
+      "split": "dev"
+    },
+    "g-colorama-021-const": {
+      "hash": "85b7a7970f253d69",
+      "split": "dev"
+    },
+    "g-colorama-022-delete": {
+      "hash": "da2de74cd2f4f1c6",
+      "split": "dev"
+    },
+    "g-colorama-023-negate": {
+      "hash": "5371e909046f99d3",
+      "split": "dev"
+    },
+    "g-decorator-000-arith": {
+      "hash": "4be5dcf5f1a31075",
+      "split": "train"
+    },
+    "g-decorator-001-const": {
+      "hash": "0827523fbc523734",
+      "split": "train"
+    },
+    "g-decorator-002-compare": {
+      "hash": "426766afe7af183f",
+      "split": "train"
+    },
+    "g-decorator-003-negate": {
+      "hash": "a57eea04b666ff7c",
+      "split": "train"
+    },
+    "g-decorator-004-compare": {
+      "hash": "0530198257961f50",
+      "split": "train"
+    },
+    "g-decorator-005-const": {
+      "hash": "57d2d81804081dc9",
+      "split": "train"
+    },
+    "g-decorator-006-compare": {
+      "hash": "ae987b18099b71a7",
+      "split": "train"
+    },
+    "g-decorator-007-negate": {
+      "hash": "b78dd16870040746",
+      "split": "train"
+    },
+    "g-decorator-008-arith": {
+      "hash": "87291dfb0ed1544c",
+      "split": "train"
+    },
+    "g-decorator-009-negate": {
+      "hash": "b3cc7b3d0bc2bfc4",
+      "split": "train"
+    },
+    "g-decorator-010-negate": {
+      "hash": "b2b231357a2d4c23",
+      "split": "train"
+    },
+    "g-decorator-011-const": {
+      "hash": "60df951b9a2a4c32",
+      "split": "train"
+    },
+    "g-decorator-012-const": {
+      "hash": "9433b1746d8d687c",
+      "split": "train"
+    },
+    "g-decorator-013-negate": {
+      "hash": "2c96b722199c29fc",
+      "split": "train"
+    },
+    "g-decorator-014-delete": {
+      "hash": "3a89ad2262de1caa",
+      "split": "train"
+    },
+    "g-decorator-015-delete": {
+      "hash": "a80f4667a2665f99",
+      "split": "train"
+    },
+    "g-decorator-016-delete": {
+      "hash": "26b9eccf077b9909",
+      "split": "train"
+    },
+    "g-decorator-017-delete": {
+      "hash": "67e42208bd321b21",
+      "split": "train"
+    },
+    "g-decorator-018-delete": {
+      "hash": "cdad95f06f4e17c9",
+      "split": "train"
+    },
+    "g-decorator-019-delete": {
+      "hash": "3f1d6ae43fcac6da",
+      "split": "train"
+    },
+    "g-decorator-020-delete": {
+      "hash": "0769b1cc28919e7a",
+      "split": "train"
+    },
+    "g-decorator-021-delete": {
+      "hash": "1f395f541cae930a",
+      "split": "train"
+    },
+    "g-decorator-022-delete": {
+      "hash": "3b5ccba06d2203c9",
+      "split": "train"
+    },
+    "g-decorator-023-delete": {
+      "hash": "64b00c660048bb4e",
+      "split": "train"
+    },
+    "g-inflection-000-const": {
+      "hash": "972307f8e8d29764",
+      "split": "train"
+    },
+    "g-inflection-001-const": {
+      "hash": "c6311da00475c6ae",
+      "split": "train"
+    },
+    "g-inflection-002-delete": {
+      "hash": "1fd3f848911bd275",
+      "split": "train"
+    },
+    "g-inflection-003-negate": {
+      "hash": "0239fbc14ce55e80",
+      "split": "train"
+    },
+    "g-inflection-004-delete": {
+      "hash": "9bed8fd9ba92c200",
+      "split": "train"
+    },
+    "g-inflection-005-delete": {
+      "hash": "03d3c014718e557a",
+      "split": "train"
+    },
+    "g-inflection-006-negate": {
+      "hash": "9e7e0b54ab5a4d57",
+      "split": "train"
+    },
+    "g-inflection-007-arith": {
+      "hash": "43971932db799f74",
+      "split": "train"
+    },
+    "g-inflection-008-delete": {
+      "hash": "1e71bc241aaa9df9",
+      "split": "train"
+    },
+    "g-inflection-009-const": {
+      "hash": "2170c23b0656829b",
+      "split": "train"
+    },
+    "g-inflection-010-const": {
+      "hash": "4c74ae807b2f56f3",
+      "split": "train"
+    },
+    "g-inflection-011-delete": {
+      "hash": "9868035e4dc66036",
+      "split": "train"
+    },
+    "g-inflection-012-delete": {
+      "hash": "c4085683c0cb7261",
+      "split": "train"
+    },
+    "g-inflection-013-const": {
+      "hash": "841c046707afee42",
+      "split": "train"
+    },
+    "g-ordered_set-000-compare": {
+      "hash": "401ccd406ca4321b",
+      "split": "train"
+    },
+    "g-ordered_set-001-arith": {
+      "hash": "eb1c8c7c16088ec5",
+      "split": "train"
+    },
+    "g-ordered_set-002-boolop": {
+      "hash": "743842750333d8de",
+      "split": "train"
+    },
+    "g-ordered_set-003-negate": {
+      "hash": "db3d82e033ee3445",
+      "split": "train"
+    },
+    "g-ordered_set-004-const": {
+      "hash": "000d006c21dd8f81",
+      "split": "train"
+    },
+    "g-ordered_set-005-compare": {
+      "hash": "325cedd0445a922d",
+      "split": "train"
+    },
+    "g-ordered_set-006-boolop": {
+      "hash": "b5a2cc217727c267",
+      "split": "train"
+    },
+    "g-ordered_set-007-negate": {
+      "hash": "a228c523e22967f1",
+      "split": "train"
+    },
+    "g-ordered_set-008-const": {
+      "hash": "028dbc6e785c9e3d",
+      "split": "train"
+    },
+    "g-ordered_set-009-negate": {
+      "hash": "efd14e5df1ceedc2",
+      "split": "train"
+    },
+    "g-ordered_set-010-negate": {
+      "hash": "bc8978a35fc12011",
+      "split": "train"
+    },
+    "g-ordered_set-011-compare": {
+      "hash": "c03981140d43ceb7",
+      "split": "train"
+    },
+    "g-ordered_set-012-negate": {
+      "hash": "648782580c828d71",
+      "split": "train"
+    },
+    "g-ordered_set-013-negate": {
+      "hash": "bbf5c6e9c97d85f0",
+      "split": "train"
+    },
+    "g-ordered_set-014-compare": {
+      "hash": "4e357b25604946a6",
+      "split": "train"
+    },
+    "g-ordered_set-015-negate": {
+      "hash": "bffa60c6b8196c74",
+      "split": "train"
+    },
+    "g-ordered_set-016-delete": {
+      "hash": "3fc04d48b1d89fa8",
+      "split": "train"
+    },
+    "g-ordered_set-017-negate": {
+      "hash": "b93f38e8e9ee65d0",
+      "split": "train"
+    },
+    "g-ordered_set-018-delete": {
+      "hash": "423d1a7c354c6a43",
+      "split": "train"
+    },
+    "g-ordered_set-019-compare": {
+      "hash": "2969309c4242b6e0",
+      "split": "train"
+    },
+    "g-ordered_set-020-negate": {
+      "hash": "d0cbffed93618e9c",
+      "split": "train"
+    },
+    "g-ordered_set-021-delete": {
+      "hash": "5ccafa45cd42500f",
+      "split": "train"
+    },
+    "g-ordered_set-022-delete": {
+      "hash": "b9d563a3e9f2b414",
+      "split": "train"
+    },
+    "g-ordered_set-023-delete": {
+      "hash": "93135542a2c89ceb",
+      "split": "train"
+    },
+    "g-parse-000-compare": {
+      "hash": "f0709eb61001f127",
+      "split": "train"
+    },
+    "g-parse-001-arith": {
+      "hash": "64dcaf0c7d8dcf8b",
+      "split": "train"
+    },
+    "g-parse-002-arith": {
+      "hash": "fdf8bdad9ca6c62e",
+      "split": "train"
+    },
+    "g-parse-003-const": {
+      "hash": "9b38ae0a146d5a3b",
+      "split": "train"
+    },
+    "g-parse-004-delete": {
+      "hash": "28dce7c3a5942a86",
+      "split": "train"
+    },
+    "g-parse-005-boolop": {
+      "hash": "05b105e917587906",
+      "split": "train"
+    },
+    "g-parse-006-negate": {
+      "hash": "57d877015924ee69",
+      "split": "train"
+    },
+    "g-parse-007-negate": {
+      "hash": "5c8ddf9e94bdca68",
+      "split": "train"
+    },
+    "g-parse-008-delete": {
+      "hash": "de53569c2b361624",
+      "split": "train"
+    },
+    "g-parse-009-arith": {
+      "hash": "b77b5a4676189bc8",
+      "split": "train"
+    },
+    "g-parse-010-boolop": {
+      "hash": "21941f72bf1e36a6",
+      "split": "train"
+    },
+    "g-parse-011-compare": {
+      "hash": "7a1f4af0a7918109",
+      "split": "train"
+    },
+    "g-parse-012-const": {
+      "hash": "a45d41f4d81a6d87",
+      "split": "train"
+    },
+    "g-parse-013-boolop": {
+      "hash": "342b7810c725f179",
+      "split": "train"
+    },
+    "g-parse-014-const": {
+      "hash": "e605911131c4f8ab",
+      "split": "train"
+    },
+    "g-parse-015-boolop": {
+      "hash": "68b01a7471039cdf",
+      "split": "train"
+    },
+    "g-parse-016-const": {
+      "hash": "28468a4260a427ad",
+      "split": "train"
+    },
+    "g-parse-017-compare": {
+      "hash": "9ad3746268b1822a",
+      "split": "train"
+    },
+    "g-parse-018-delete": {
+      "hash": "e0e173e60742b444",
+      "split": "train"
+    },
+    "g-parse-019-boolop": {
+      "hash": "8d7385d01497e7bf",
+      "split": "train"
+    },
+    "g-parse-020-negate": {
+      "hash": "f0f7a73088b1bc9c",
+      "split": "train"
+    },
+    "g-parse-021-const": {
+      "hash": "f09a3a9e56a3f8b7",
+      "split": "train"
+    },
+    "g-parse-022-negate": {
+      "hash": "14d92e5ecfe0a0eb",
+      "split": "train"
+    },
+    "g-parse-023-arith": {
+      "hash": "f8cb68b4c91ffbcc",
+      "split": "train"
+    },
+    "g-schema-000-arith": {
+      "hash": "47f070976bb5ce67",
+      "split": "dev"
+    },
+    "g-schema-001-const": {
+      "hash": "f23936604480080b",
+      "split": "dev"
+    },
+    "g-schema-002-loopctl": {
+      "hash": "f6fbdb04b8470816",
+      "split": "dev"
+    },
+    "g-schema-003-delete": {
+      "hash": "f8daee078ffc47a5",
+      "split": "dev"
+    },
+    "g-schema-004-arith": {
+      "hash": "4c8ce26ed12c03b0",
+      "split": "dev"
+    },
+    "g-schema-005-boolop": {
+      "hash": "608a3d72b6e4cf2b",
+      "split": "dev"
+    },
+    "g-schema-006-const": {
+      "hash": "32eaf71b4a0899d9",
+      "split": "dev"
+    },
+    "g-schema-007-loopctl": {
+      "hash": "afc1b4797ab8400a",
+      "split": "dev"
+    },
+    "g-schema-008-arith": {
+      "hash": "4adfb4a00c46336f",
+      "split": "dev"
+    },
+    "g-schema-009-boolop": {
+      "hash": "6c54bc0535854811",
+      "split": "dev"
+    },
+    "g-schema-010-const": {
+      "hash": "1fb9484002d74f49",
+      "split": "dev"
+    },
+    "g-schema-011-delete": {
+      "hash": "04ef9afa5d5d54fa",
+      "split": "dev"
+    },
+    "g-schema-012-negate": {
+      "hash": "561250a1cc0369e7",
+      "split": "dev"
+    },
+    "g-schema-013-loopctl": {
+      "hash": "072ffdb8202e8919",
+      "split": "dev"
+    },
+    "g-schema-014-compare": {
+      "hash": "11afb95ecb25e155",
+      "split": "dev"
+    },
+    "g-schema-015-arith": {
+      "hash": "da2efd04049ca95f",
+      "split": "dev"
+    },
+    "g-schema-016-boolop": {
+      "hash": "038e9ecefb420804",
+      "split": "dev"
+    },
+    "g-schema-017-compare": {
+      "hash": "48e3844ece2749a1",
+      "split": "dev"
+    },
+    "g-schema-018-const": {
+      "hash": "099b69a5db70d7bb",
+      "split": "dev"
+    },
+    "g-schema-019-compare": {
+      "hash": "4cd997a9aa029ea2",
+      "split": "dev"
+    },
+    "g-schema-020-negate": {
+      "hash": "07e672435c9f9945",
+      "split": "dev"
+    },
+    "g-schema-021-delete": {
+      "hash": "e136757e797f073f",
+      "split": "dev"
+    },
+    "g-schema-022-arith": {
+      "hash": "6e37031645c4afea",
+      "split": "dev"
+    },
+    "g-schema-023-const": {
+      "hash": "56906b4c2eb97a47",
+      "split": "dev"
+    },
+    "g-seqtools-000-arith": {
+      "hash": "89869f5166d7cdac",
+      "split": "train"
+    },
+    "g-seqtools-001-boolop": {
+      "hash": "1ec7964c71e8ebff",
+      "split": "train"
+    },
+    "g-seqtools-002-negate": {
+      "hash": "e3a8227f38a513fa",
+      "split": "train"
+    },
+    "g-seqtools-003-const": {
+      "hash": "7be359d4454f8b63",
+      "split": "train"
+    },
+    "g-seqtools-004-delete": {
+      "hash": "3828ccd6dd187e75",
+      "split": "train"
+    },
+    "g-seqtools-005-negate": {
+      "hash": "2fcd9120b4d30ee8",
+      "split": "train"
+    },
+    "g-seqtools-006-const": {
+      "hash": "bd50e4237aaafed8",
+      "split": "train"
+    },
+    "g-seqtools-007-negate": {
+      "hash": "683bb5d25b3d8af7",
+      "split": "train"
+    },
+    "g-seqtools-008-const": {
+      "hash": "3bc5d0ed2309eeb2",
+      "split": "train"
+    },
+    "g-seqtools-009-compare": {
+      "hash": "be7e06c7f8afc8ef",
+      "split": "train"
+    },
+    "g-seqtools-010-const": {
+      "hash": "6ae3a6fb4d21b3b6",
+      "split": "train"
+    },
+    "g-seqtools-011-negate": {
+      "hash": "f61a75e8348702a3",
+      "split": "train"
+    },
+    "g-seqtools-012-delete": {
+      "hash": "4f661497e5e535ee",
+      "split": "train"
+    },
+    "g-seqtools-013-negate": {
+      "hash": "a6f627db7a317f61",
+      "split": "train"
+    },
+    "g-seqtools-014-delete": {
+      "hash": "e5d6c4107766da36",
+      "split": "train"
+    },
+    "g-seqtools-015-negate": {
+      "hash": "e05a8198d03e35bf",
+      "split": "train"
+    },
+    "g-seqtools-016-arith": {
+      "hash": "2ea80ea08bccee86",
+      "split": "train"
+    },
+    "g-seqtools-017-arith": {
+      "hash": "fd2b25ca4108e412",
+      "split": "train"
+    },
+    "g-seqtools-018-const": {
+      "hash": "1914e9e61003223c",
+      "split": "train"
+    },
+    "g-seqtools-019-arith": {
+      "hash": "c7e7e44031c8676e",
+      "split": "train"
+    },
+    "g-seqtools-020-const": {
+      "hash": "e9fc7aabc8b17123",
+      "split": "train"
+    },
+    "g-seqtools-021-const": {
+      "hash": "27b575304a76a9a8",
+      "split": "train"
+    },
+    "g-six-000-delete": {
+      "hash": "16954406ee2d895e",
+      "split": "train"
+    },
+    "g-six-001-negate": {
+      "hash": "0d57b16fbd3099c2",
+      "split": "train"
+    },
+    "g-six-002-const": {
+      "hash": "d1cc7a1d1748c1db",
+      "split": "train"
+    },
+    "g-six-003-delete": {
+      "hash": "0b6b315455f15c80",
+      "split": "train"
+    },
+    "g-six-004-negate": {
+      "hash": "c0885e1bd31479c7",
+      "split": "train"
+    },
+    "g-six-005-compare": {
+      "hash": "8ae6995b14458076",
+      "split": "train"
+    },
+    "g-six-006-const": {
+      "hash": "6ac3f9dc82171590",
+      "split": "train"
+    },
+    "g-six-007-delete": {
+      "hash": "0351ff05cc0ecb54",
+      "split": "train"
+    },
+    "g-six-008-delete": {
+      "hash": "598efccedd4efe73",
+      "split": "train"
+    },
+    "g-six-009-negate": {
+      "hash": "7b9e646f03f8f6f0",
+      "split": "train"
+    },
+    "g-six-010-delete": {
+      "hash": "70a9eec4ac759a0c",
+      "split": "train"
+    },
+    "g-six-011-negate": {
+      "hash": "f530195e8a38ec52",
+      "split": "train"
+    },
+    "g-six-012-negate": {
+      "hash": "cf3e67fe593a62fa",
+      "split": "train"
+    },
+    "g-six-013-negate": {
+      "hash": "ed32151e4e06109d",
+      "split": "train"
+    },
+    "g-six-014-negate": {
+      "hash": "9d118200e0567997",
+      "split": "train"
+    },
+    "g-six-015-negate": {
+      "hash": "c05382a0ba32054c",
+      "split": "train"
+    },
+    "g-six-016-delete": {
+      "hash": "23b9f421e71a0955",
+      "split": "train"
+    },
+    "g-six-017-delete": {
+      "hash": "957fd1f760d165c4",
+      "split": "train"
+    },
+    "g-six-018-delete": {
+      "hash": "3d582f30fa361f7e",
+      "split": "train"
+    },
+    "g-six-019-delete": {
+      "hash": "90e1575c3eee6a88",
+      "split": "train"
+    },
+    "g-six-020-negate": {
+      "hash": "03184a8a31f7a615",
+      "split": "train"
+    },
+    "g-six-021-delete": {
+      "hash": "e871de5f76b5b05f",
+      "split": "train"
+    },
+    "g-six-022-negate": {
+      "hash": "61b55bd0db6fe179",
+      "split": "train"
+    },
+    "g-six-023-negate": {
+      "hash": "33410bf26fda8bcd",
+      "split": "train"
+    },
+    "g-sqlparse-000-arith": {
+      "hash": "d12b7811591d29f9",
+      "split": "test"
+    },
+    "g-sqlparse-001-boolop": {
+      "hash": "8f886d5a615f60a1",
+      "split": "test"
+    },
+    "g-sqlparse-003-loopctl": {
+      "hash": "288af3038c1ed901",
+      "split": "test"
+    },
+    "g-sqlparse-004-compare": {
+      "hash": "1b3d127352ed43c5",
+      "split": "test"
+    },
+    "g-sqlparse-005-const": {
+      "hash": "2c40dd99deb0963e",
+      "split": "test"
+    },
+    "g-sqlparse-006-loopctl": {
+      "hash": "48ce7709f1a8d233",
+      "split": "test"
+    },
+    "g-sqlparse-007-arith": {
+      "hash": "d95ae85de2d31eab",
+      "split": "test"
+    },
+    "g-sqlparse-008-negate": {
+      "hash": "d3900e65cc106a25",
+      "split": "test"
+    },
+    "g-sqlparse-009-compare": {
+      "hash": "970fb26aa2179103",
+      "split": "test"
+    },
+    "g-sqlparse-010-boolop": {
+      "hash": "aa0a2bb04aded653",
+      "split": "test"
+    },
+    "g-sqlparse-011-delete": {
+      "hash": "9d839e0f5ea320b0",
+      "split": "test"
+    },
+    "g-sqlparse-012-compare": {
+      "hash": "2646dea22d5e85b2",
+      "split": "test"
+    },
+    "g-sqlparse-013-compare": {
+      "hash": "47d8d161a7f2b35e",
+      "split": "test"
+    },
+    "g-sqlparse-014-boolop": {
+      "hash": "7e12ba273f2d0383",
+      "split": "test"
+    },
+    "g-sqlparse-015-delete": {
+      "hash": "d7b24234f9f87035",
+      "split": "test"
+    },
+    "g-sqlparse-016-const": {
+      "hash": "8a87f13aa5916cc6",
+      "split": "test"
+    },
+    "g-sqlparse-017-compare": {
+      "hash": "d43dee26c5cde935",
+      "split": "test"
+    },
+    "g-sqlparse-018-const": {
+      "hash": "82260371dc549fe0",
+      "split": "test"
+    },
+    "g-sqlparse-019-delete": {
+      "hash": "8dbbe784d22a59ac",
+      "split": "test"
+    },
+    "g-sqlparse-020-compare": {
+      "hash": "19b46e12c418e657",
+      "split": "test"
+    },
+    "g-sqlparse-021-boolop": {
+      "hash": "84be7b3c630786e6",
+      "split": "test"
+    },
+    "g-sqlparse-022-loopctl": {
+      "hash": "cae98e489d934baf",
+      "split": "test"
+    },
+    "g-sqlparse-023-compare": {
+      "hash": "259fb0b2e4c029d7",
+      "split": "test"
+    },
+    "g-tabulate-000-const": {
+      "hash": "9bfa71397862b75a",
+      "split": "train"
+    },
+    "g-tabulate-001-delete": {
+      "hash": "ad2c074fe384f743",
+      "split": "train"
+    },
+    "g-tabulate-002-arith": {
+      "hash": "9e930a63a8175a8b",
+      "split": "train"
+    },
+    "g-tabulate-003-boolop": {
+      "hash": "e8ff72b8a9b612a9",
+      "split": "train"
+    },
+    "g-tabulate-004-const": {
+      "hash": "594041ffe122aad7",
+      "split": "train"
+    },
+    "g-tabulate-005-delete": {
+      "hash": "533d52b3df5acadb",
+      "split": "train"
+    },
+    "g-tabulate-006-compare": {
+      "hash": "aa4e9af00fee02af",
+      "split": "train"
+    },
+    "g-tabulate-007-arith": {
+      "hash": "b1d6046193eb7836",
+      "split": "train"
+    },
+    "g-tabulate-008-const": {
+      "hash": "7cdfb153f9d2fde8",
+      "split": "train"
+    },
+    "g-tabulate-009-loopctl": {
+      "hash": "28850d5d2a408c57",
+      "split": "train"
+    },
+    "g-tabulate-010-arith": {
+      "hash": "385b7506df01e4fb",
+      "split": "train"
+    },
+    "g-tabulate-011-negate": {
+      "hash": "0de715107f0aadb4",
+      "split": "train"
+    },
+    "g-tabulate-012-compare": {
+      "hash": "94b936dd97bd8469",
+      "split": "train"
+    },
+    "g-tabulate-013-arith": {
+      "hash": "2ac2bf1b37c40e44",
+      "split": "train"
+    },
+    "g-tabulate-014-boolop": {
+      "hash": "ff6e1320ee957e0f",
+      "split": "train"
+    },
+    "g-tabulate-015-negate": {
+      "hash": "f9a3c13ddd023fc1",
+      "split": "train"
+    },
+    "g-tabulate-016-const": {
+      "hash": "026e029d7381ce7c",
+      "split": "train"
+    },
+    "g-tabulate-017-negate": {
+      "hash": "153312edae89f158",
+      "split": "train"
+    },
+    "g-tabulate-018-delete": {
+      "hash": "bdf06a59fb02958d",
+      "split": "train"
+    },
+    "g-tabulate-019-arith": {
+      "hash": "d929a757e5a15667",
+      "split": "train"
+    },
+    "g-tabulate-020-negate": {
+      "hash": "da0eb28e7670996c",
+      "split": "train"
+    },
+    "g-tabulate-021-delete": {
+      "hash": "a66df1bddacf4ac1",
+      "split": "train"
+    },
+    "g-tabulate-022-arith": {
+      "hash": "76ca6f6138411efe",
+      "split": "train"
+    },
+    "g-tabulate-023-arith": {
+      "hash": "190a2e4bf599736c",
+      "split": "train"
+    },
+    "g-termcolor-000-compare": {
+      "hash": "96728f7cc48e7174",
+      "split": "train"
+    },
+    "g-termcolor-001-const": {
+      "hash": "3d9d20761c643cf9",
+      "split": "train"
+    },
+    "g-termcolor-002-delete": {
+      "hash": "5456e5636f662bde",
+      "split": "train"
+    },
+    "g-termcolor-003-compare": {
+      "hash": "b6b6296c289bec24",
+      "split": "train"
+    },
+    "g-termcolor-004-const": {
+      "hash": "fd71d2675237aa2c",
+      "split": "train"
+    },
+    "g-termcolor-005-const": {
+      "hash": "dbefbdfd643f7a97",
+      "split": "train"
+    },
+    "g-textkit-000-compare": {
+      "hash": "685431632cdc2f42",
+      "split": "train"
+    },
+    "g-textkit-001-arith": {
+      "hash": "acce099ed28f3955",
+      "split": "train"
+    },
+    "g-textkit-002-boolop": {
+      "hash": "a987144d3b6862e0",
+      "split": "train"
+    },
+    "g-textkit-003-negate": {
+      "hash": "bca65bd6378da428",
+      "split": "train"
+    },
+    "g-textkit-004-const": {
+      "hash": "64983a6d91fc8ac0",
+      "split": "train"
+    },
+    "g-textkit-005-delete": {
+      "hash": "ee674918326649c3",
+      "split": "train"
+    },
+    "g-textkit-006-compare": {
+      "hash": "14fe749de5703f8f",
+      "split": "train"
+    },
+    "g-textkit-007-arith": {
+      "hash": "14baf7e6035225a2",
+      "split": "train"
+    },
+    "g-textkit-008-boolop": {
+      "hash": "e4ca6f415f0c7390",
+      "split": "train"
+    },
+    "g-textkit-009-negate": {
+      "hash": "bec67e41b7bebd05",
+      "split": "train"
+    },
+    "g-textkit-010-arith": {
+      "hash": "a95663d14dfdbe86",
+      "split": "train"
+    },
+    "g-textkit-011-const": {
+      "hash": "cf03777f2820d93d",
+      "split": "train"
+    },
+    "g-textkit-012-arith": {
+      "hash": "1537527238518ea4",
+      "split": "train"
+    },
+    "g-textkit-013-negate": {
+      "hash": "bbffe0eb2154e48b",
+      "split": "train"
+    },
+    "g-textkit-014-arith": {
+      "hash": "4eb1dddb448e64ae",
+      "split": "train"
+    },
+    "g-textkit-015-delete": {
+      "hash": "fe53e67181ef9f33",
+      "split": "train"
+    },
+    "g-textkit-016-compare": {
+      "hash": "5cd6f0e5fe952adc",
+      "split": "train"
+    },
+    "g-textkit-017-negate": {
+      "hash": "03a3d1b1f769f6d4",
+      "split": "train"
+    },
+    "g-textkit-018-compare": {
+      "hash": "a98a6393aa593e3e",
+      "split": "train"
+    },
+    "g-textkit-019-arith": {
+      "hash": "9793dd5f47b4942d",
+      "split": "train"
+    },
+    "g-textkit-020-const": {
+      "hash": "1b37dd46feb993df",
+      "split": "train"
+    },
+    "g-textkit-021-delete": {
+      "hash": "e320c85e472c069e",
+      "split": "train"
+    },
+    "g-textkit-022-const": {
+      "hash": "250d1db2b9984b20",
+      "split": "train"
+    },
+    "g-toolz-000-negate": {
+      "hash": "f7aa16da8dc6ed26",
+      "split": "train"
+    },
+    "g-toolz-001-const": {
+      "hash": "dfa1c569b070c280",
+      "split": "train"
+    },
+    "g-toolz-002-loopctl": {
+      "hash": "35fb5c614399650a",
+      "split": "train"
+    },
+    "g-toolz-003-compare": {
+      "hash": "61dfa3eea8485114",
+      "split": "train"
+    },
+    "g-toolz-004-arith": {
+      "hash": "db6f107134e4f170",
+      "split": "train"
+    },
+    "g-toolz-005-negate": {
+      "hash": "8a3e558e8afa8235",
+      "split": "train"
+    },
+    "g-toolz-006-loopctl": {
+      "hash": "0442fc22dcd97194",
+      "split": "train"
+    },
+    "g-toolz-007-delete": {
+      "hash": "3f2a2c8330a806e0",
+      "split": "train"
+    },
+    "g-toolz-008-compare": {
+      "hash": "41cf4ed83e5e0935",
+      "split": "train"
+    },
+    "g-toolz-009-boolop": {
+      "hash": "9f58358aaf682e51",
+      "split": "train"
+    },
+    "g-toolz-010-negate": {
+      "hash": "274209a926a69e62",
+      "split": "train"
+    },
+    "g-toolz-011-delete": {
+      "hash": "941ead533b6593b8",
+      "split": "train"
+    },
+    "g-toolz-012-arith": {
+      "hash": "e413cf756b10d484",
+      "split": "train"
+    },
+    "g-toolz-013-boolop": {
+      "hash": "60600533cf49dd9b",
+      "split": "train"
+    },
+    "g-toolz-014-loopctl": {
+      "hash": "1e76fa7b5867c998",
+      "split": "train"
+    },
+    "g-toolz-015-delete": {
+      "hash": "c1e6f5b2eb38e0b5",
+      "split": "train"
+    },
+    "g-toolz-016-boolop": {
+      "hash": "5d478ab3eebcec5e",
+      "split": "train"
+    },
+    "g-toolz-017-negate": {
+      "hash": "d1e0cb8e55914f1d",
+      "split": "train"
+    },
+    "g-toolz-018-const": {
+      "hash": "cf338edcb4dbe0e2",
+      "split": "train"
+    },
+    "g-toolz-019-delete": {
+      "hash": "10f535561b393fb2",
+      "split": "train"
+    },
+    "g-toolz-020-compare": {
+      "hash": "fd3071e5e1336e05",
+      "split": "train"
+    },
+    "g-toolz-021-boolop": {
+      "hash": "1da65e05c90176f1",
+      "split": "train"
+    },
+    "g-toolz-022-negate": {
+      "hash": "7c92140255c49754",
+      "split": "train"
+    },
+    "g-toolz-023-delete": {
+      "hash": "54bf3cebd805c01d",
+      "split": "train"
+    },
+    "g-xmltodict-000-arith": {
+      "hash": "e18bd4bf929c839e",
+      "split": "test"
+    },
+    "g-xmltodict-001-negate": {
+      "hash": "41f599c7521bc3a0",
+      "split": "test"
+    },
+    "g-xmltodict-002-const": {
+      "hash": "d42dad26c5ea4474",
+      "split": "test"
+    },
+    "g-xmltodict-003-loopctl": {
+      "hash": "7b4ad8f269763ece",
+      "split": "test"
+    },
+    "g-xmltodict-004-compare": {
+      "hash": "41d47240e90d3951",
+      "split": "test"
+    },
+    "g-xmltodict-005-const": {
+      "hash": "b8846290a5b7a8c6",
+      "split": "test"
+    },
+    "g-xmltodict-006-loopctl": {
+      "hash": "8af69f51e018a152",
+      "split": "test"
+    },
+    "g-xmltodict-007-compare": {
+      "hash": "73a847d6ae274d42",
+      "split": "test"
+    },
+    "g-xmltodict-008-arith": {
+      "hash": "e1ea7a6e874d2122",
+      "split": "test"
+    },
+    "g-xmltodict-009-const": {
+      "hash": "8fd54f12ceaf857f",
+      "split": "test"
+    },
+    "g-xmltodict-010-delete": {
+      "hash": "f386c567d499e132",
+      "split": "test"
+    },
+    "g-xmltodict-011-const": {
+      "hash": "9453da89a0c04f67",
+      "split": "test"
+    },
+    "g-xmltodict-012-loopctl": {
+      "hash": "86c0b28e12b9bacf",
+      "split": "test"
+    },
+    "g-xmltodict-013-arith": {
+      "hash": "27a433c0fcaee654",
+      "split": "test"
+    },
+    "g-xmltodict-014-boolop": {
+      "hash": "529d4236b01be511",
+      "split": "test"
+    },
+    "g-xmltodict-015-negate": {
+      "hash": "75443de683c60b55",
+      "split": "test"
+    },
+    "g-xmltodict-016-const": {
+      "hash": "4953b7d68969f671",
+      "split": "test"
+    },
+    "g-xmltodict-017-delete": {
+      "hash": "e9dfed499b768724",
+      "split": "test"
+    },
+    "g-xmltodict-018-boolop": {
+      "hash": "dcc93ad02b538717",
+      "split": "test"
+    },
+    "g-xmltodict-019-negate": {
+      "hash": "2ed52f4056a17601",
+      "split": "test"
+    },
+    "g-xmltodict-020-compare": {
+      "hash": "f5025dc09bf7d909",
+      "split": "test"
+    },
+    "g-xmltodict-021-boolop": {
+      "hash": "8b9cfb76a9faf03f",
+      "split": "test"
+    },
+    "g-xmltodict-022-const": {
+      "hash": "41aff76c78ef0b09",
+      "split": "test"
+    },
+    "g-xmltodict-023-delete": {
+      "hash": "83ff77f0d4afdfc7",
+      "split": "test"
+    }
+  },
+  "version": 1
+}

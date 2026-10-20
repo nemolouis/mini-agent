@@ -1,0 +1,14 @@
+{
+  "name": "ctx3k-fixed",
+  "model": "deepseek-flash",
+  "temperature": 0.0,
+  "max_steps": 50,
+  "max_tokens": 16384,
+  "context_limit": 3000,
+  "keep_recent": 4,
+  "disabled_tools": [],
+  "base_url": "https://api.deepseek.com",
+  "api_key_env": "DEEPSEEK_API_KEY",
+  "hypothesis": "PREDICTION (after the compaction-hysteresis fix, same 3000-token limit and keep_recent=4 as the earlier ctx3k run: 90% baseline, 77% ctx3k, 31 summary compactions and 41.8 steps per run): the limit is still unreachable by compaction (828 prompt tokens + verbatim recent tool outputs exceed the 2100 threshold), but the cost is bounded: summary compactions per run fall to <= 8, mean steps to <= 20, `max_steps` failures mostly disappear, and the pass rate returns to within 10 points of the 90% baseline. If steps stay high the cause is something other than the trigger.",
+  "compact_regrowth": 1.0
+}

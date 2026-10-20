@@ -1,0 +1,14 @@
+{
+  "name": "no-verify-prompt",
+  "model": "deepseek-flash",
+  "temperature": 0.0,
+  "max_steps": 50,
+  "max_tokens": 16384,
+  "context_limit": 100000,
+  "keep_recent": 8,
+  "disabled_tools": [],
+  "base_url": "https://api.deepseek.com",
+  "api_key_env": "DEEPSEEK_API_KEY",
+  "hypothesis": "PREDICTION: removing the 'run the tests' sentence changes little (<= 8 points) because the model runs tests by habit; fewer bash calls per run.",
+  "system_prompt_file": "prompts/no_verify.txt"
+}

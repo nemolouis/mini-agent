@@ -1,0 +1,19 @@
+{
+  "name": "tabulate",
+  "mutate": [
+    "tabulate/__init__.py"
+  ],
+  "tests": [
+    "test/test_api.py",
+    "test/test_cli.py",
+    "test/test_input.py",
+    "test/test_internal.py",
+    "test/test_output.py",
+    "test/test_regression.py",
+    "test/test_textwrapper.py"
+  ],
+  "test_cmd": "python -m pytest -q",
+  "origin": "pypi:tabulate==0.10.0 sha256:e2cfde8f79420f6deeffdeda9aaec3b6bc5abce947655d17ac662b126e48a60d",
+  "license": "MIT",
+  "split": "train"
+}

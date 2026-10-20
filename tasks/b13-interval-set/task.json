@@ -1,0 +1,5 @@
+{
+  "prompt": "The IntervalSet class gives wrong answers for some operations (adjacent intervals, removal, intersection, lengths, complement). Its behaviour is specified in the docstrings. Fix it so the tests pass.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

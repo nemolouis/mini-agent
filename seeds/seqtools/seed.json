@@ -1,0 +1,13 @@
+{
+  "name": "seqtools",
+  "mutate": [
+    "seqtools.py"
+  ],
+  "tests": [
+    "test_seqtools.py"
+  ],
+  "test_cmd": "python -m pytest -q",
+  "origin": "written for this project (demo seed)",
+  "license": "MIT",
+  "split": "train"
+}

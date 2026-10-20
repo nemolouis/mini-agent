@@ -1,0 +1,21 @@
+{
+  "n_tasks": 9,
+  "n_runs": 27,
+  "pass_rate": 1.0,
+  "pass_rate_ci95": [
+    1.0,
+    1.0
+  ],
+  "mean_steps": 5.333333333333333,
+  "mean_input_tokens": 8449.074074074075,
+  "mean_cache_read_tokens": 6930.962962962963,
+  "mean_output_tokens": 712.5555555555555,
+  "mean_cost_usd": null,
+  "mean_wall_s": 30.906296296296297,
+  "mean_tool_errors": 0.0,
+  "runs_with_compaction": 0,
+  "tampered_runs": 0,
+  "failure_classes": {
+    "pass": 27
+  }
+}

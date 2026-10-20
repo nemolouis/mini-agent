@@ -1,0 +1,4 @@
+{
+  "prompt": "Items added to one cart leak into other carts. Fix the bug in cart.py so tests pass.",
+  "test_cmd": "pytest -q"
+}

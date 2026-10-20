@@ -1,0 +1,5 @@
+{
+  "prompt": "apply_patch does not implement JSON Patch (RFC 6902) as specified in docs/SPEC.md: several operations give wrong results and the input document can be modified. Fix it so the tests pass.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

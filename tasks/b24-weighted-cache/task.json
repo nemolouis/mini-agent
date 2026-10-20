@@ -1,0 +1,5 @@
+{
+  "prompt": "The weighted cache violates several rules in docs/SPEC.md (capacity accounting, TTL boundaries, pinned entries, eviction callbacks, replacement). Fix it so the tests pass.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

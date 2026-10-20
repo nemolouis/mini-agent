@@ -1,0 +1,4 @@
+{
+  "prompt": "The function moving_average in stats.py returns wrong results. Fix the bug so tests pass.",
+  "test_cmd": "pytest -q"
+}

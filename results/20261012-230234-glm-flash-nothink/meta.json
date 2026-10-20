@@ -1,0 +1,37 @@
+{
+  "run_id": "20261012-230234-glm-flash-nothink",
+  "config": {
+    "name": "glm-flash-nothink",
+    "model": "glm-4.7-flash",
+    "temperature": 0.0,
+    "max_steps": 50,
+    "max_tokens": 16384,
+    "context_limit": 100000,
+    "keep_recent": 8,
+    "disabled_tools": [],
+    "base_url": "https://open.bigmodel.cn/api/paas/v4",
+    "api_key_env": "GLM_API_KEY",
+    "api_retries": 8,
+    "api_timeout": 300,
+    "extra_body": {
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "hypothesis": "same model with thinking disabled: faster and fewer tokens; does accuracy drop?"
+  },
+  "config_hash": "4741f73338",
+  "split": "dev",
+  "repeat": 1,
+  "date": "2026-10-12 23:02:34",
+  "tasks": [
+    "b02-month-recurrence",
+    "b09-sliding-window",
+    "b13-interval-set"
+  ],
+  "task_hashes": {
+    "b02-month-recurrence": "9b9b3d627fdf00c3",
+    "b09-sliding-window": "ff7b36c7a5dbbf5f",
+    "b13-interval-set": "43cf1252a0245077"
+  }
+}

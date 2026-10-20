@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>miniagent trajectory viewer</title>
+<style>
+:root {
+  --bg: #f6f7f9; --card: #ffffff; --fg: #1b1f24; --muted: #6a737d; --border: #d8dee4;
+  --accent: #0b66d0; --good: #1a7f37; --bad: #c62828; --warn: #b26a00; --code: #f0f2f5;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #11151a; --card: #181d23; --fg: #e4e8ec; --muted: #94a0ad; --border: #2c343d;
+          --accent: #5aa2f5; --good: #4cc27a; --bad: #f2777a; --warn: #e3a64a; --code: #0e1318; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header.top { position: sticky; top: 0; z-index: 5; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  padding: 10px 16px; background: var(--card); border-bottom: 1px solid var(--border); }
+header.top h1 { font-size: 15px; margin: 0 8px 0 0; }
+button, select, input[type=text] { font: inherit; color: var(--fg); background: var(--card); border: 1px solid var(--border);
+  border-radius: 6px; padding: 4px 10px; }
+button { cursor: pointer; } button:hover { border-color: var(--accent); }
+button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.tabs button.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+main { padding: 16px; max-width: 1500px; margin: 0 auto; }
+.hint { color: var(--muted); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 12px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.pill { display: inline-block; padding: 0 8px; border-radius: 10px; font-size: 12px; border: 1px solid var(--border); color: var(--muted); }
+.pill.good { color: var(--good); border-color: var(--good); } .pill.bad { color: var(--bad); border-color: var(--bad); }
+.pill.warn { color: var(--warn); border-color: var(--warn); } .pill.info { color: var(--accent); border-color: var(--accent); }
+.kv { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px 16px; margin-top: 8px; }
+.kv div span { display: block; color: var(--muted); font-size: 12px; } .kv div b { font-weight: 600; }
+pre { margin: 6px 0 0; padding: 8px 10px; background: var(--code); border-radius: 6px; font: 12px/1.4 var(--mono);
+  white-space: pre-wrap; word-break: break-word; max-height: 420px; overflow: auto; }
+details > summary { cursor: pointer; color: var(--accent); } details > summary.plain { color: var(--fg); }
+.timeline { display: flex; align-items: flex-end; gap: 3px; height: 70px; padding-top: 14px; overflow-x: auto; }
+.bar { position: relative; flex: 0 0 14px; min-height: 4px; border-radius: 2px 2px 0 0; background: var(--accent); cursor: pointer; }
+.bar.stop { background: var(--good); } .bar.length { background: var(--bad); } .bar.error { background: var(--warn); }
+.bar .tick { position: absolute; top: -9px; left: 0; width: 14px; text-align: center; font-size: 10px; color: var(--warn); font-weight: 700; }
+.legend { margin-top: 6px; font-size: 12px; color: var(--muted); }
+.legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin: 0 4px 0 10px; vertical-align: baseline; }
+.step { border-left: 3px solid var(--accent); }
+.step.stop { border-left-color: var(--good); } .step.length { border-left-color: var(--bad); }
+.step header { display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline; margin-bottom: 6px; }
+.step header .n { font-weight: 700; }
+.text { white-space: pre-wrap; word-break: break-word; margin: 4px 0; }
+.call { margin-top: 8px; padding: 6px 8px; border: 1px solid var(--border); border-radius: 6px; }
+.call .name { font: 600 13px var(--mono); }
+.call .args { font: 12px var(--mono); color: var(--muted); }
+.result.err { color: var(--bad); }
+.banner { margin: 6px 0; padding: 6px 10px; border-radius: 6px; background: color-mix(in srgb, var(--warn) 14%, transparent);
+  border: 1px solid var(--warn); font-size: 13px; }
+.banner.end { background: var(--code); border-color: var(--border); }
+table { border-collapse: collapse; width: 100%; } th, td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--border); font-size: 13px; }
+th { color: var(--muted); font-weight: 600; cursor: default; } tr.clickable { cursor: pointer; } tr.clickable:hover { background: var(--code); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; } th.num { text-align: right; } td.nowrap { white-space: nowrap; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
+.grid2 > .col { min-width: 0; }
+.cmprow { margin-bottom: 10px; }
+.cmprow.diverged .cell { border-left-color: var(--warn); }
+.cell { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--border); border-radius: 6px; padding: 6px 10px; min-height: 40px; font-size: 13px; }
+.cell.empty { color: var(--muted); background: transparent; border-style: dashed; }
+.cell .mini { font: 12px var(--mono); margin-top: 2px; word-break: break-all; }
+.delta.up { color: var(--bad); } .delta.down { color: var(--good); }
+@media (max-width: 800px) { .grid2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>miniagent trajectory viewer</h1>
+  <span class="tabs row">
+    <button id="tab-browse" data-tab="browse">Runs</button>
+    <button id="tab-single" data-tab="single">Run A</button>
+    <button id="tab-compare" data-tab="compare">Compare A / B</button>
+  </span>
+  <span class="row" id="loaders">
+    <label class="pill info" style="cursor:pointer">Load A…<input type="file" id="fileA" accept=".jsonl,.json,.txt" hidden></label>
+    <label class="pill info" style="cursor:pointer">Load B…<input type="file" id="fileB" accept=".jsonl,.json,.txt" hidden></label>
+  </span>
+  <span class="hint" id="mode"></span>
+</header>
+<main id="app"></main>
+
+<script>
+"use strict";
+// ---------------------------------------------------------------- helpers
+const $ = (s, r = document) => r.querySelector(s);
+function h(tag, attrs, ...kids) {
+  const el = document.createElement(tag);
+  if (attrs) for (const [k, v] of Object.entries(attrs)) {
+    if (v == null || v === false) continue;
+    if (k === "class") el.className = v;
+    else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+    else el.setAttribute(k, v === true ? "" : v);
+  }
+  for (const kid of kids.flat()) if (kid != null && kid !== false) el.append(kid.nodeType ? kid : document.createTextNode(String(kid)));
+  return el;   // all text goes through createTextNode: trajectory content is never interpreted as HTML
+}
+const fmt = n => (n == null || Number.isNaN(n)) ? "–" : Number(n).toLocaleString();
+const secs = s => s == null ? "–" : (s >= 100 ? Math.round(s) + " s" : s.toFixed(1) + " s");
+const clip = (s, n) => { s = String(s ?? ""); return s.length > n ? s.slice(0, n) + "…" : s; };
+const pretty = v => { try { return JSON.stringify(v, null, 2); } catch { return String(v); } };
+function stable(v) {   // key order independent, for comparing tool-call arguments
+  if (Array.isArray(v)) return "[" + v.map(stable).join(",") + "]";
+  if (v && typeof v === "object") return "{" + Object.keys(v).sort().map(k => JSON.stringify(k) + ":" + stable(v[k])).join(",") + "}";
+  return JSON.stringify(v);
+}
+
+// ---------------------------------------------------------------- trajectory model
+function parseJsonl(text) {
+  const out = [];
+  text.split("\n").forEach((line, i) => {
+    if (!line.trim()) return;
+    try { out.push(JSON.parse(line)); } catch (e) { throw new Error("line " + (i + 1) + " is not valid JSON"); }
+  });
+  return out;
+}
+function normCall(e) {   // supports the current format and the early Anthropic-style one
+  let text, calls, finish;
+  if (Array.isArray(e.content)) {
+    text = e.content.filter(b => b.type === "text").map(b => b.text).join("\n");
+    calls = e.content.filter(b => b.type === "tool_use").map(b => ({ id: b.id, name: b.name, input: b.input }));
+    finish = e.stop_reason;
+  } else { text = e.text || ""; calls = e.tool_calls || []; finish = e.finish_reason; }
+  const u = e.usage || {};
+  return { step: e.step, latency: e.latency_s, finish, text, calls, model: e.response_model || "",
+    inTok: u.input_tokens || 0, outTok: u.output_tokens || 0,
+    cached: u.cache_hit_tokens ?? u.cache_read_input_tokens ?? 0, reasoning: u.reasoning_tokens || 0 };
+}
+function buildRun(events) {
+  const run = { events, start: null, end: null, steps: [], trailing: [] };
+  let pending = [], cur = null;
+  for (const e of events) {
+    if (e.event === "run_start") run.start = e;
+    else if (e.event === "run_end") run.end = e;
+    else if (e.event === "compaction") pending.push(e);
+    else if (e.event === "model_call") {
+      cur = { n: e.step, call: normCall(e), results: [], compactions: pending };
+      pending = []; run.steps.push(cur);
+    } else if (e.event === "tool_result") {
+      const owner = run.steps.find(s => s.n === e.step) || cur;
+      if (owner) owner.results.push(e);
+    }
+  }
+  run.trailing = pending;
+  const t = { calls: run.steps.length, inTok: 0, outTok: 0, cached: 0, reasoning: 0, model: 0, tool: 0,
+    compSummary: 0, compElide: 0, toolErrors: 0, toolCalls: 0 };
+  for (const s of run.steps) {
+    t.inTok += s.call.inTok; t.outTok += s.call.outTok; t.cached += s.call.cached; t.reasoning += s.call.reasoning;
+    t.model += s.call.latency || 0;
+    for (const r of s.results) { t.tool += r.duration_s || 0; t.toolCalls++; if (r.is_error) t.toolErrors++; }
+    for (const c of s.compactions) (c.kind === "summary" ? t.compSummary++ : t.compElide++);
+  }
+  run.totals = t;
+  return run;
+}
+function resultFor(step, call, i) {
+  return step.results.find(r => (r.tool_call_id || r.tool_use_id) === call.id) || step.results[i] || null;
+}
+function argPreview(name, input) {
+  if (!input || typeof input !== "object") return "";
+  if (name === "bash") return clip(input.command, 140);
+  if (name === "write_file") return clip(input.path, 60) + " (" + (input.content || "").length + " chars)";
+  if (name === "edit_file") return clip(input.path, 60);
+  return clip(Object.entries(input).map(([k, v]) => k + "=" + (typeof v === "string" ? v : JSON.stringify(v))).join(" "), 140);
+}
+
+// ---------------------------------------------------------------- state
+const state = { server: false, sources: [], runsBySource: {}, A: null, B: null, tab: "browse",
+  filter: { source: "", text: "", cls: "", passed: "" } };
+
+async function loadFromText(slot, label, text, rec, source) {
+  const run = buildRun(parseJsonl(text));
+  state[slot] = { label, run, rec: rec || null, source: source || null };
+}
+const taskIdOf = s => (s.rec && s.rec.task_id) || (s.run.start && s.run.start.meta && s.run.start.meta.task_id) || "";
+for (const slot of ["A", "B"]) {
+  $("#file" + slot).addEventListener("change", async ev => {
+    const f = ev.target.files[0]; if (!f) return;
+    try { await loadFromText(slot, f.name, await f.text()); } catch (e) { alert(f.name + ": " + e.message); return; }
+    setTab(slot === "A" ? "single" : "compare");
+  });
+}
+document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => setTab(b.dataset.tab)));
+function setTab(t) {
+  state.tab = t;
+  document.querySelectorAll(".tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === t));
+  render();
+}
+
+// ---------------------------------------------------------------- views
+function statusPill(run, rec) {
+  const end = run.end;
+  if (rec && rec.passed != null) return h("span", { class: "pill " + (rec.passed ? "good" : "bad") }, rec.passed ? "PASS" : "FAIL: " + rec.failure_class);
+  if (!end) return h("span", { class: "pill warn" }, "no run_end (incomplete)");
+  return h("span", { class: "pill " + (end.status === "done" ? "info" : "bad") }, "agent status: " + end.status);
+}
+function summaryCard(label, slot) {
+  const { run, rec } = slot, t = run.totals, st = run.start || {}, m = st.meta || {}, cfg = st.config || {};
+  const cell = (k, v) => h("div", null, h("span", null, k), h("b", null, v));
+  return h("div", { class: "card" },
+    h("div", { class: "row" }, h("b", null, label), statusPill(run, rec),
+      h("span", { class: "pill" }, st.model || (run.steps[0] && run.steps[0].call.model) || "model ?"),
+      m.config_name ? h("span", { class: "pill" }, "config " + m.config_name) : null,
+      m.task_id ? h("span", { class: "pill info" }, m.task_id + (m.repeat != null ? " r" + m.repeat : "")) : null,
+      t.compSummary ? h("span", { class: "pill warn" }, t.compSummary + " summary compactions") : null),
+    h("div", { class: "kv" },
+      cell("steps (model calls)", fmt(t.calls)), cell("input tokens", fmt(t.inTok) + (t.cached ? " (" + fmt(t.cached) + " cached)" : "")),
+      cell("output tokens", fmt(t.outTok)), cell("reasoning tokens", fmt(t.reasoning)),
+      cell("model time", secs(t.model)), cell("tool time", secs(t.tool)),
+      cell("tool calls / errors", t.toolCalls + " / " + t.toolErrors),
+      cell("temperature", cfg.temperature == null ? "default" : cfg.temperature),
+      cell("max steps / context", (cfg.max_steps ?? "–") + " / " + fmt(cfg.context_limit))),
+    st.task ? h("details", null, h("summary", null, "task prompt"), h("pre", null, st.task)) : null);
+}
+function timeline(run, prefix) {
+  const max = Math.max(1, ...run.steps.map(s => s.call.latency || 0));
+  const bars = run.steps.map(s => {
+    const err = s.results.some(r => r.is_error);
+    const cls = "bar " + (s.call.finish === "stop" || s.call.finish === "end_turn" ? "stop" : s.call.finish === "length" ? "length" : err ? "error" : "");
+    const nComp = s.compactions.filter(c => c.kind === "summary").length;
+    return h("div", { class: cls, style: "height:" + Math.max(6, 50 * (s.call.latency || 0) / max) + "px",
+      title: "step " + s.n + " · " + secs(s.call.latency) + " · " + s.call.finish + (nComp ? " · " + nComp + " summary compaction(s) before this call" : ""),
+      onclick: () => { const el = document.getElementById(prefix + "-step-" + s.n); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); } },
+      nComp ? h("span", { class: "tick" }, nComp > 1 ? nComp + "C" : "C") : null);
+  });
+  return h("div", { class: "card" }, h("div", { class: "timeline" }, bars),
+    h("div", { class: "legend" }, "bar height = model latency; click a bar to jump to the step",
+      h("i", { style: "background:var(--accent)" }), "tool calls", h("i", { style: "background:var(--good)" }), "final answer",
+      h("i", { style: "background:var(--bad)" }), "cut off (length)", h("i", { style: "background:var(--warn)" }), "tool error · C = compaction before the call"));
+}
+function stepCard(s, prefix) {
+  const c = s.call;
+  const kids = [];
+  for (const comp of s.compactions) {
+    kids.push(h("div", { class: "banner" }, "compaction (" + comp.kind + "): est. " + fmt(comp.est_tokens_before) + " → " + fmt(comp.est_tokens_after) + " tokens",
+      comp.summary ? h("details", null, h("summary", null, "show summary"), h("pre", null, comp.summary)) : null));
+  }
+  kids.push(h("header", null, h("span", { class: "n" }, "Step " + s.n),
+    h("span", { class: "pill " + (c.finish === "length" ? "bad" : c.finish === "stop" || c.finish === "end_turn" ? "good" : "info") }, c.finish || "?"),
+    h("span", { class: "hint" }, secs(c.latency)),
+    h("span", { class: "hint" }, "in " + fmt(c.inTok) + (c.cached ? " (" + fmt(c.cached) + " cached)" : "") + " · out " + fmt(c.outTok) + (c.reasoning ? " (reasoning " + fmt(c.reasoning) + ")" : ""))));
+  if (c.text) kids.push(h("div", { class: "text" }, c.text));
+  c.calls.forEach((call, i) => {
+    const r = resultFor(s, call, i);
+    kids.push(h("div", { class: "call" },
+      h("div", null, h("span", { class: "name" }, call.name), " ", h("span", { class: "args" }, argPreview(call.name, call.input)),
+        h("details", { style: "display:inline-block;margin-left:8px" }, h("summary", null, "args"), h("pre", null, pretty(call.input)))),
+      r ? h("div", { class: "result" + (r.is_error ? " err" : "") },
+        h("details", null,
+          h("summary", { class: "plain" }, (r.is_error ? "error: " : "") + clip(String(r.output).split("\n")[0], 140) + "  ", h("span", { class: "hint" },
+            secs(r.duration_s) + (r.approved === false ? " · denied" : "") + " · " + fmt(String(r.output).length) + " chars")),
+          h("pre", null, String(r.output)))) : h("div", { class: "hint" }, "(no result recorded)")));
+  });
+  return h("section", { class: "card step " + (c.finish === "length" ? "length" : c.finish === "stop" || c.finish === "end_turn" ? "stop" : ""), id: prefix + "-step-" + s.n }, kids);
+}
+function endBanner(run) {
+  const e = run.end; if (!e) return null;
+  return h("div", { class: "card banner end" }, h("b", null, "run_end: " + e.status), e.error ? h("div", { class: "result err" }, e.error) : null,
+    e.final_text ? h("pre", null, e.final_text) : null);
+}
+function renderSingle(root) {
+  if (!state.A) { root.append(h("p", { class: "hint" }, "No run loaded. Use “Load A…”" + (state.server ? " or pick one in the Runs tab." : "."))); return; }
+  const { run } = state.A;
+  root.append(...[summaryCard("Run A · " + state.A.label, state.A), timeline(run, "A"),
+    h("div", { class: "row", style: "margin-bottom:8px" },
+      h("button", { onclick: () => document.querySelectorAll("#app .step details").forEach(d => d.open = false) }, "collapse all"),
+      h("button", { onclick: () => document.querySelectorAll("#app .call .result details").forEach(d => d.open = true) }, "expand tool results")),
+    run.steps.map(s => stepCard(s, "A")), run.trailing.map(c => h("div", { class: "banner" }, "compaction (" + c.kind + ") at the end")),
+    endBanner(run)].flat().filter(Boolean));   // native append() does not flatten arrays
+}
+function callKey(step) { return step.call.calls.map(c => c.name + ":" + stable(c.input)).join("|") || "∅:" + (step.call.finish || ""); }
+function renderCompare(root) {
+  if (!state.A || !state.B) {
+    root.append(h("p", { class: "hint" }, "Compare needs two runs. " + (state.A ? "" : "A is not picked. ") + (state.B ? "" : "B is not picked. ") +
+      "Use the A / B buttons in the Runs tab, or Load A… / Load B… above. Same task, different configuration is the interesting case."));
+    return;
+  }
+  const a = state.A.run, b = state.B.run, n = Math.max(a.steps.length, b.steps.length);
+  const tidA = taskIdOf(state.A), tidB = taskIdOf(state.B);
+  if (tidA && tidB && tidA !== tidB) root.append(h("div", { class: "banner" },
+    "A and B are different tasks (" + tidA + " vs " + tidB + "): the step-by-step alignment and the divergence marker are not meaningful."));
+  let div = -1;
+  for (let i = 0; i < n; i++) {
+    const sa = a.steps[i], sb = b.steps[i];
+    if (!sa || !sb || callKey(sa) !== callKey(sb)) { div = i; break; }
+  }
+  const T = (k, x, y, lowerIsBetter = true, f = fmt) => {
+    const d = y - x, cls = d === 0 ? "" : ((d > 0) === lowerIsBetter ? "delta up" : "delta down");
+    return h("tr", null, h("td", null, k), h("td", { class: "num" }, f(x)), h("td", { class: "num" }, f(y)),
+      h("td", { class: "num " + cls }, d === 0 ? "=" : (d > 0 ? "+" : "") + (f === secs ? d.toFixed(1) + " s" : fmt(d))));
+  };
+  const ta = a.totals, tb = b.totals;
+  root.append(
+    h("div", { class: "grid2" }, h("div", { class: "col" }, summaryCard("A · " + state.A.label, state.A)), h("div", { class: "col" }, summaryCard("B · " + state.B.label, state.B))),
+    h("div", { class: "card" }, h("table", null,
+      h("thead", null, h("tr", null, h("th", null, "totals"), h("th", { class: "num" }, "A"), h("th", { class: "num" }, "B"), h("th", { class: "num" }, "B − A"))),
+      h("tbody", null, T("steps (model calls)", ta.calls, tb.calls), T("input tokens", ta.inTok, tb.inTok), T("output tokens", ta.outTok, tb.outTok),
+        T("reasoning tokens", ta.reasoning, tb.reasoning), T("model time", ta.model, tb.model, true, secs),
+        T("summary compactions", ta.compSummary, tb.compSummary), T("tool errors", ta.toolErrors, tb.toolErrors)))),
+    h("div", { class: "grid2" }, h("div", { class: "col" }, timeline(a, "A")), h("div", { class: "col" }, timeline(b, "B"))),
+    h("div", { class: "banner" }, div < 0 ? "Both runs take identical actions at every step."
+      : "First divergence at step " + (div + 1) + ": " + (!a.steps[div] ? "A has already ended" : !b.steps[div] ? "B has already ended" : "different tool call or arguments") +
+        ". Rows from there on are marked. (Runs at different settings or with sampling noise usually diverge early; the totals above are the better summary.)",
+      ["A", "B"].map((k, i) => { const r = i ? b : a, f = r.steps.find(s => s.compactions.some(c => c.kind === "summary"));
+        return h("div", null, k + ": " + (f ? "first summary compaction before step " + f.n + " (" + r.totals.compSummary + " in total)" : "no summary compaction")); })));
+  for (let i = 0; i < n; i++) {
+    const row = h("div", { class: "cmprow grid2" + (div >= 0 && i >= div ? " diverged" : "") });
+    for (const [prefix, run] of [["A", a], ["B", b]]) {
+      const s = run.steps[i];
+      if (!s) { row.append(h("div", { class: "cell empty col" }, "(ended)")); continue; }
+      const comp = s.compactions.filter(c => c.kind === "summary").length;
+      row.append(h("div", { class: "cell col", id: prefix + "-step-" + s.n },
+        h("div", null, h("b", null, "Step " + s.n), " ", h("span", { class: "hint" }, secs(s.call.latency) + " · " + s.call.finish + " · out " + fmt(s.call.outTok)),
+          comp ? h("span", { class: "pill warn", style: "margin-left:6px" }, comp + "× compaction") : null),
+        s.call.text ? h("div", { class: "hint" }, clip(s.call.text.replace(/\s+/g, " "), 160)) : null,
+        s.call.calls.map((c, k) => { const r = resultFor(s, c, k);
+          return h("details", null, h("summary", { class: "plain" }, h("span", { class: "mini" }, c.name + " " + argPreview(c.name, c.input))),
+            h("pre", null, pretty(c.input) + (r ? "\n\n→ " + clip(String(r.output), 1500) : ""))); })));
+    }
+    root.append(row);
+  }
+  root.append(h("div", { class: "grid2" }, h("div", { class: "col" }, endBanner(a)), h("div", { class: "col" }, endBanner(b))));
+}
+
+// ---------------------------------------------------------------- runs browser (server mode)
+async function api(path) { const r = await fetch(path); if (!r.ok) throw new Error(path + " → HTTP " + r.status); return r; }
+async function loadRun(slot, source, rec) {
+  const text = await (await api("/api/traj?source=" + encodeURIComponent(source) + "&id=" + encodeURIComponent(rec.id))).text();
+  await loadFromText(slot, source + " · " + rec.task_id + (rec.repeat != null ? " r" + rec.repeat : ""), text, rec, source);
+}
+async function pickRun(slot, source, rec) {   // A / B buttons: stay on the Runs tab so the other slot can be picked next
+  try { await loadRun(slot, source, rec); } catch (e) { alert("cannot load " + rec.task_id + ": " + e.message); return; }
+  const y = window.scrollY; await render(); window.scrollTo(0, y);
+}
+async function openRun(slot, source, rec) {   // double-click: open as A and view it
+  try { await loadRun(slot, source, rec); } catch (e) { alert("cannot load " + rec.task_id + ": " + e.message); return; }
+  setTab("single");
+}
+const isPicked = (slot, source, rec) => { const s = state[slot]; return !!(s && s.source === source && s.rec && s.rec.id === rec.id); };
+async function renderBrowse(root) {
+  if (!state.server) {
+    root.append(h("div", { class: "card" }, h("b", null, "Static mode"), h("p", null, "Open this page through ", h("code", null, "miniagent-eval view <results-dir>"),
+      " to browse every run of a results directory and compare any two. Without the server you can still load single trajectory files with “Load A…” and “Load B…”.")));
+    return;
+  }
+  const f = state.filter;
+  if (!f.source) f.source = state.sources[0].name;
+  if (!state.runsBySource[f.source]) state.runsBySource[f.source] = await (await api("/api/runs?source=" + encodeURIComponent(f.source))).json();
+  const all = state.runsBySource[f.source];
+  const classes = [...new Set(all.map(r => r.failure_class))].sort();
+  const src = state.sources.find(s => s.name === f.source) || {};
+
+  const chip = k => { const s = state[k];
+    return h("span", { class: "row" }, h("b", null, k + ":"),
+      s ? h("span", { class: "pill info" }, s.label) : h("span", { class: "hint" }, "not picked"),
+      s ? h("button", { title: "clear " + k, onclick: () => { state[k] = null; render(); } }, "✕") : null); };
+  const pickBar = h("div", { class: "card" }, h("div", { class: "row" }, chip("A"), chip("B"),
+    h("button", { class: "primary", disabled: !(state.A && state.B), onclick: () => setTab("compare") }, "Compare A / B"),
+    h("button", { disabled: !state.A, onclick: () => setTab("single") }, "View A")));
+
+  const tbody = h("tbody"), count = h("span", { class: "hint" });
+  const rowEl = r => h("tr", { class: "clickable", ondblclick: () => openRun("A", f.source, r) },
+    h("td", null, r.task_id), h("td", null, r.repeat ?? ""),
+    h("td", null, r.passed == null ? h("span", { class: "pill" }, r.failure_class) : h("span", { class: "pill " + (r.passed ? "good" : "bad") }, r.passed ? "pass" : r.failure_class)),
+    h("td", { class: "num" }, r.steps), h("td", { class: "num" }, fmt(r.input_tokens)), h("td", { class: "num" }, fmt(r.output_tokens)),
+    h("td", { class: "num" }, secs(r.wall_s)),
+    h("td", null, [r.compactions ? h("span", { class: "pill warn" }, r.compactions + "× compaction") : null, r.last_test_green && !r.passed ? h("span", { class: "pill bad", title: "failed, but the agent's own last test run was green" }, "false completion") : null,
+      r.attempt ? h("span", { class: "pill" }, "retry " + r.attempt) : null]),
+    h("td", { class: "nowrap" }, ["A", "B"].map(k => h("button", { class: isPicked(k, f.source, r) ? "primary" : null, style: "margin-right:4px",
+      title: "use this run as " + k, ondblclick: e => e.stopPropagation(), onclick: e => { e.stopPropagation(); pickRun(k, f.source, r); } }, k))));
+  const fill = () => {   // only the table body is rebuilt, so the filter box keeps focus while typing
+    const rows = all.filter(r => (!f.text || r.task_id.includes(f.text)) && (!f.cls || r.failure_class === f.cls) &&
+      (f.passed === "" || String(r.passed) === f.passed)).sort((x, y) => (x.task_id + x.repeat).localeCompare(y.task_id + y.repeat));
+    tbody.replaceChildren(...rows.map(rowEl));
+    count.textContent = rows.length + " of " + all.length + " runs";
+  };
+  const numeric = new Set(["steps", "in tok", "out tok", "wall"]);
+  root.append(pickBar, h("div", { class: "card" },
+    h("div", { class: "row" },
+      h("select", { onchange: e => { f.source = e.target.value; render(); } }, state.sources.map(s => h("option", { value: s.name, selected: s.name === f.source }, s.name + " (" + s.n + ")"))),
+      h("input", { type: "text", placeholder: "filter task id", value: f.text, oninput: e => { f.text = e.target.value; fill(); } }),
+      h("select", { onchange: e => { f.cls = e.target.value; fill(); } }, [h("option", { value: "" }, "all classes"), ...classes.map(c => h("option", { value: c, selected: c === f.cls }, c))]),
+      h("select", { onchange: e => { f.passed = e.target.value; fill(); } }, [["", "pass + fail"], ["true", "passed"], ["false", "failed"]].map(([v, t]) => h("option", { value: v, selected: v === f.passed }, t))),
+      count),
+    src.meta ? h("div", { class: "hint", style: "margin-top:6px" }, "config " + src.meta.config + " · model " + src.meta.model + " · split " + src.meta.split + " · " + src.meta.date) : null),
+    h("div", { class: "card" }, h("table", null,
+      h("thead", null, h("tr", null, ["task", "rep", "result", "steps", "in tok", "out tok", "wall", "flags", "pick"].map(x => h("th", { class: numeric.has(x) ? "num" : null }, x)))),
+      tbody),
+      h("div", { class: "hint", style: "margin-top:6px" }, "Pick one run as A and one as B (the highlighted button marks your pick), then press “Compare A / B”. Double-click a row to open it as A. A and B can come from different results directories: switch the source selector between the two picks.")));
+  fill();
+}
+
+// ---------------------------------------------------------------- render
+let renderSeq = 0;
+async function render() {
+  const seq = ++renderSeq, box = h("div");
+  try {
+    if (state.tab === "browse") await renderBrowse(box);
+    else if (state.tab === "single") renderSingle(box);
+    else renderCompare(box);
+  } catch (e) { box.append(h("div", { class: "card banner" }, "Error: " + e.message)); }
+  if (seq !== renderSeq) return;   // a newer render superseded this one while it was awaiting
+  $("#app").replaceChildren(...box.childNodes);
+}
+async function init() {
+  try {
+    state.sources = await (await api("/api/sources")).json(); state.server = true;
+    $("#mode").textContent = "server mode · " + state.sources.length + " source(s)";
+  } catch { state.server = false; $("#mode").textContent = "static mode (no server)"; state.tab = "single"; }
+  if (!state.server) $("#tab-browse").style.display = "none";
+  setTab(state.server ? "browse" : "single");
+}
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+class CycleError(Exception):
+    pass

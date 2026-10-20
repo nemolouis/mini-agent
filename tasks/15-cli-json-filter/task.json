@@ -1,0 +1,4 @@
+{
+  "prompt": "Extend the report CLI: add a --json flag that prints the summary as JSON with keys count, total, average (average rounded to 2 decimals), and a --min-amount N option that only includes rows whose amount is >= N before summarising. Existing text output must stay the same. Make the tests pass.",
+  "test_cmd": "pytest -q"
+}

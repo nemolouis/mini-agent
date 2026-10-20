@@ -1,0 +1,5 @@
+{
+  "prompt": "merge3 only handles trivial cases (one side unchanged) and reports a whole-file conflict otherwise. Implement a proper line-based three-way merge as described in docs/SPEC.md so the tests pass.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

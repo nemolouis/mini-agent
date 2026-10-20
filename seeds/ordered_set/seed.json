@@ -1,0 +1,13 @@
+{
+  "name": "ordered_set",
+  "mutate": [
+    "ordered_set/__init__.py"
+  ],
+  "tests": [
+    "test/test_ordered_set.py"
+  ],
+  "test_cmd": "python -m pytest -q",
+  "origin": "pypi:ordered-set==4.1.0 sha256:694a8e44c87657c59292ede72891eb91d34131f6531463aab3009191c77364a8",
+  "license": "",
+  "split": "train"
+}

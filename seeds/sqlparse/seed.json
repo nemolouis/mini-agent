@@ -1,0 +1,39 @@
+{
+  "name": "sqlparse",
+  "mutate": [
+    "sqlparse/__init__.py",
+    "sqlparse/cli.py",
+    "sqlparse/engine/filter_stack.py",
+    "sqlparse/engine/grouping.py",
+    "sqlparse/engine/statement_splitter.py",
+    "sqlparse/filters/__init__.py",
+    "sqlparse/filters/aligned_indent.py",
+    "sqlparse/filters/others.py",
+    "sqlparse/filters/output.py",
+    "sqlparse/filters/reindent.py",
+    "sqlparse/filters/right_margin.py",
+    "sqlparse/filters/tokens.py",
+    "sqlparse/formatter.py",
+    "sqlparse/keywords.py",
+    "sqlparse/lexer.py",
+    "sqlparse/sql.py",
+    "sqlparse/tokens.py",
+    "sqlparse/utils.py"
+  ],
+  "tests": [
+    "tests/test_cli.py",
+    "tests/test_dos_prevention.py",
+    "tests/test_format.py",
+    "tests/test_grouping.py",
+    "tests/test_keywords.py",
+    "tests/test_parse.py",
+    "tests/test_regressions.py",
+    "tests/test_split.py",
+    "tests/test_tokenize.py",
+    "tests/test_utils.py"
+  ],
+  "test_cmd": "python -m pytest -q",
+  "origin": "pypi:sqlparse==0.6.0 sha256:113c35c75365ab9cc9c7231d68c6428fb11c085fc8e9eb1ad659b7ddbf6cd2b9",
+  "license": "",
+  "split": "test"
+}

@@ -1,0 +1,5 @@
+{
+  "prompt": "TimerQueue misorders or drops timers in several situations (ties, repeating timers, cancellation, timers scheduled from callbacks, callback errors). The behaviour is specified in docs/SPEC.md. Fix it so the tests pass.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

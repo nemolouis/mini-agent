@@ -1,0 +1,21 @@
+{
+  "name": "colorama",
+  "mutate": [
+    "colorama/ansi.py",
+    "colorama/ansitowin32.py",
+    "colorama/initialise.py",
+    "colorama/win32.py",
+    "colorama/winterm.py"
+  ],
+  "tests": [
+    "colorama/tests/ansi_test.py",
+    "colorama/tests/ansitowin32_test.py",
+    "colorama/tests/initialise_test.py",
+    "colorama/tests/isatty_test.py",
+    "colorama/tests/winterm_test.py"
+  ],
+  "test_cmd": "python -m pytest -q",
+  "origin": "pypi:colorama==0.4.6 sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44",
+  "license": "",
+  "split": "dev"
+}

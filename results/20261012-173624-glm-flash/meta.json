@@ -1,0 +1,52 @@
+{
+  "run_id": "20261012-173624-glm-flash",
+  "config": {
+    "name": "glm-flash",
+    "model": "glm-4.7-flash",
+    "temperature": 0.0,
+    "max_steps": 50,
+    "max_tokens": 16384,
+    "context_limit": 100000,
+    "keep_recent": 8,
+    "disabled_tools": [],
+    "base_url": "https://open.bigmodel.cn/api/paas/v4",
+    "api_key_env": "GLM_API_KEY",
+    "api_retries": 8,
+    "api_timeout": 300,
+    "hypothesis": "GLM-4.7-Flash (free tier) with thinking at its default (enabled)"
+  },
+  "config_hash": "3268e7df47",
+  "split": "dev",
+  "repeat": 3,
+  "date": "2026-10-12 17:36:24",
+  "tasks": [
+    "b02-month-recurrence",
+    "b03-patch-apply",
+    "b05-interpolate",
+    "b08-csv-loader",
+    "b09-sliding-window",
+    "b12-sessions",
+    "b13-interval-set",
+    "b15-cron-next",
+    "b16-text-diff",
+    "b19-regex-engine",
+    "b21-timer-queue",
+    "b22-linear-solver",
+    "b23-meeting-slots"
+  ],
+  "task_hashes": {
+    "b02-month-recurrence": "9b9b3d627fdf00c3",
+    "b03-patch-apply": "e496100c8fe04d69",
+    "b05-interpolate": "9e83cf166606d991",
+    "b08-csv-loader": "f3ae4859cbce0cec",
+    "b09-sliding-window": "ff7b36c7a5dbbf5f",
+    "b12-sessions": "e0ca0408004f7295",
+    "b13-interval-set": "43cf1252a0245077",
+    "b15-cron-next": "0ae340c12260ebad",
+    "b16-text-diff": "ac76057c78d3afee",
+    "b19-regex-engine": "676c9c80c6fe6c7b",
+    "b21-timer-queue": "dc765c9a2aa353b7",
+    "b22-linear-solver": "ba1dcf9f55978e26",
+    "b23-meeting-slots": "f9d0154e50b95851"
+  }
+}

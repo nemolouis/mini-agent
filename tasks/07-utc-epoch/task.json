@@ -1,0 +1,4 @@
+{
+  "prompt": "Token expiry checks give wrong answers on machines whose local timezone is not UTC. Find and fix the root cause so the tests pass.",
+  "test_cmd": "pytest -q"
+}

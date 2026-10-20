@@ -1,0 +1,5 @@
+{
+  "prompt": "The dependency resolver sometimes fails on dependency sets that do have a valid solution, and sometimes does not pick the newest valid version. Fix it so the tests pass.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

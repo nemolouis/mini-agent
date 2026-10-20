@@ -1,0 +1,5 @@
+{
+  "prompt": "next_after() computes wrong times for some cron expressions (day-of-month/day-of-week rules, steps, names, Sundays, leap days) and gives up too early. The supported syntax and semantics are in docs/SPEC.md. Fix it so the tests pass.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

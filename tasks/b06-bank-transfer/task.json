@@ -1,0 +1,5 @@
+{
+  "prompt": "Transfers sometimes lose money or charge the wrong fee, and retries can apply a transfer twice. The behaviour is specified in docs/SPEC.md. Fix the implementation so it conforms.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

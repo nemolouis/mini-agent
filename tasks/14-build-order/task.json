@@ -1,0 +1,4 @@
+{
+  "prompt": "build_order should return every package (including ones that only appear as dependencies) with dependencies before dependents, ties broken alphabetically, and raise errors.CycleError on any dependency cycle (including a package depending on itself). Fix it so the tests pass.",
+  "test_cmd": "pytest -q"
+}

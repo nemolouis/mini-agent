@@ -1,0 +1,24 @@
+{
+  "n_tasks": 1,
+  "n_runs": 1,
+  "pass_rate": 1.0,
+  "pass_rate_ci95": [
+    NaN,
+    NaN
+  ],
+  "mean_steps": 19.0,
+  "mean_input_tokens": 63476.0,
+  "mean_cache_read_tokens": 13819.0,
+  "mean_output_tokens": 1461.0,
+  "mean_reasoning_tokens": 0.0,
+  "mean_cost_usd_off_peak": null,
+  "mean_cost_usd_peak": null,
+  "mean_wall_s": 74.34,
+  "mean_tool_errors": 0.0,
+  "runs_with_compaction": 0,
+  "tampered_runs": 0,
+  "runs_after_api_retry": 0,
+  "failure_classes": {
+    "pass": 1
+  }
+}

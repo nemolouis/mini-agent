@@ -1,0 +1,17 @@
+{
+  "name": "g35-ctx3k-fixed",
+  "model": "gemini-3.5-flash-lite",
+  "temperature": null,
+  "max_steps": 50,
+  "max_tokens": 16384,
+  "context_limit": 3000,
+  "keep_recent": 4,
+  "disabled_tools": [],
+  "api_style": "gemini",
+  "base_url_env": "RELAY_BASE_URL",
+  "api_key_env": "RELAY_API_KEY",
+  "api_retries": 8,
+  "api_timeout": 300,
+  "hypothesis": "PREDICTION (compaction fix, mechanism check; gemini-3.5-flash-lite, 4 tasks x 1): the 3000-token limit is not reachable by compaction (580 prompt tokens + verbatim recent tool outputs exceed the 2100 threshold), so every run that compacts logs `compaction_floor`. Before the fix this regime gave about 31 summary compactions and 42 steps per run (DeepSeek, results/20261013-205516-ctx3k). Now: <= 8 summary compactions per run, mean steps <= 34 (1.5x the 22.6 of the g35-mid baseline), and no run ends in `max_steps` because of compaction. The pass rate is NOT interpreted (n=4).",
+  "compact_regrowth": 1.0
+}

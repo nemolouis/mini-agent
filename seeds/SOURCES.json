@@ -1,0 +1,182 @@
+[
+  {
+    "name": "parse",
+    "version": "1.22.3",
+    "filename": "parse-1.22.3.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/64/47/3d816e5e8f65b17667a4fcc672806d9ecf3dd997691d56ae5345a445b653/parse-1.22.3.tar.gz",
+    "sha256": "7e79bb39c72c3bf1613510fd5cdffe5baa9a7873892bef1d4566f1672c8a42f4",
+    "size": 37944,
+    "license": "MIT"
+  },
+  {
+    "name": "toposort",
+    "version": "1.10",
+    "filename": "toposort-1.10.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/69/19/8e955d90985ecbd3b9adb2a759753a6840da2dff3c569d412b2c9217678b/toposort-1.10.tar.gz",
+    "sha256": "bfbb479c53d0a696ea7402601f4e693c97b0367837c8898bc6471adfca37a6bd",
+    "size": 11132,
+    "license": "Apache License Version 2.0"
+  },
+  {
+    "name": "xmltodict",
+    "version": "1.0.4",
+    "filename": "xmltodict-1.0.4.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/19/70/80f3b7c10d2630aa66414bf23d210386700aa390547278c789afa994fd7e/xmltodict-1.0.4.tar.gz",
+    "sha256": "6d94c9f834dd9e44514162799d344d815a3a4faec913717a9ecbfa5be1bb8e61",
+    "size": 26124,
+    "license": "MIT"
+  },
+  {
+    "name": "pytimeparse",
+    "version": "1.1.10",
+    "filename": "pytimeparse-1.1.10.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/92/bf/87bd96fd60abf241cae10e6f7fc3882c8a81ebdbe76f49f9c3116b5b38ab/pytimeparse-1.1.10.tar.gz",
+    "sha256": "ecf0ee613a72cb0b1d3d5404bd398a64266576fc36ccf3149178af6f2ec6f736",
+    "size": 11613,
+    "license": "License :: OSI Approved :: MIT License"
+  },
+  {
+    "name": "inflection",
+    "version": "0.5.1",
+    "filename": "inflection-0.5.1.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/e1/7e/691d061b7329bc8d54edbf0ec22fbfb2afe61facb681f9aaa9bff7a27d04/inflection-0.5.1.tar.gz",
+    "sha256": "1a29730d366e996aaacffb2f1f1cb9593dc38e2ddd30c91250c6dde09ea9b417",
+    "size": 15091,
+    "license": "MIT"
+  },
+  {
+    "name": "schema",
+    "version": "0.7.8",
+    "filename": "schema-0.7.8.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/fb/2e/8da627b65577a8f130fe9dfa88ce94fcb24b1f8b59e0fc763ee61abef8b8/schema-0.7.8.tar.gz",
+    "sha256": "e86cc08edd6fe6e2522648f4e47e3a31920a76e82cce8937535422e310862ab5",
+    "size": 45540,
+    "license": "MIT"
+  },
+  {
+    "name": "ordered-set",
+    "version": "4.1.0",
+    "filename": "ordered-set-4.1.0.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/4c/ca/bfac8bc689799bcca4157e0e0ced07e70ce125193fc2e166d2e685b7e2fe/ordered-set-4.1.0.tar.gz",
+    "sha256": "694a8e44c87657c59292ede72891eb91d34131f6531463aab3009191c77364a8",
+    "size": 12826,
+    "license": ""
+  },
+  {
+    "name": "sortedcontainers",
+    "version": "2.4.0",
+    "filename": "sortedcontainers-2.4.0.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/e8/c4/ba2f8066cceb6f23394729afe52f3bf7adec04bf9ed2c820b39e19299111/sortedcontainers-2.4.0.tar.gz",
+    "sha256": "25caa5a06cc30b6b83d11423433f65d1f9d76c4c6a0c90e3379eaa43b9bfdb88",
+    "size": 30594,
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "cachetools",
+    "version": "7.2.3",
+    "filename": "cachetools-7.2.3.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/09/88/27fe0785c7a9aa285c753db0b4ea967adbf76128fede66379c35a4b8d054/cachetools-7.2.3.tar.gz",
+    "sha256": "e6fafd06de4a5bd915ff7d247588ea497e28c9a568c62db8678d9a5f11515a9a",
+    "size": 43727,
+    "license": "MIT"
+  },
+  {
+    "name": "toolz",
+    "version": "1.2.0",
+    "filename": "toolz-1.2.0.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/31/6f/ae20c212a07aa2d156c787383d8088a5e045ee39628661edb190c97e1659/toolz-1.2.0.tar.gz",
+    "sha256": "9667a038e9d6ecba37995e26cb2f59ec6420b6ad8dd9677de59db9b956b08490",
+    "size": 55442,
+    "license": "BSD-3-Clause"
+  },
+  {
+    "name": "boltons",
+    "version": "26.2.0",
+    "filename": "boltons-26.2.0.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/71/56/14c4a4931910a81ddeccfbe227925ea738e3c445d3e2af960f0bcbba1616/boltons-26.2.0.tar.gz",
+    "sha256": "d39cfd15c1a1c3bd4d705c82252fa9edb8e4f5e8cc039f8e39afac7b1b47e92c",
+    "size": 242047,
+    "license": ""
+  },
+  {
+    "name": "tabulate",
+    "version": "0.10.0",
+    "filename": "tabulate-0.10.0.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/46/58/8c37dea7bbf769b20d58e7ace7e5edfe65b849442b00ffcdd56be88697c6/tabulate-0.10.0.tar.gz",
+    "sha256": "e2cfde8f79420f6deeffdeda9aaec3b6bc5abce947655d17ac662b126e48a60d",
+    "size": 91754,
+    "license": "MIT"
+  },
+  {
+    "name": "jsonpointer",
+    "version": "3.2.1",
+    "filename": "jsonpointer-3.2.1.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/33/a2/c92f0a7ed439c490d2c8ad712fdb074c311afa4f77870987826a3b1483ba/jsonpointer-3.2.1.tar.gz",
+    "sha256": "47c846513b3a4ec46eecef1105207fba075e2a3659048e362bd7daff0fc33342",
+    "size": 11309,
+    "license": "Modified BSD License"
+  },
+  {
+    "name": "sqlparse",
+    "version": "0.6.0",
+    "filename": "sqlparse-0.6.0.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/5f/d3/3f06a1006f2261d1342aefb3c71eed02f5d4ca5bdbecd86ebc12ad38306e/sqlparse-0.6.0.tar.gz",
+    "sha256": "113c35c75365ab9cc9c7231d68c6428fb11c085fc8e9eb1ad659b7ddbf6cd2b9",
+    "size": 178477,
+    "license": ""
+  },
+  {
+    "name": "decorator",
+    "version": "5.3.1",
+    "filename": "decorator-5.3.1.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/60/8b/32f9823da46cde7df2087faa08cd98d01b908f8dcab982cdba9c84e85355/decorator-5.3.1.tar.gz",
+    "sha256": "4cbcdd55a6efadb9dbea26b858f4fb3264567b52d69ca0d25b721b553f60ea82",
+    "size": 58084,
+    "license": "BSD-2-Clause"
+  },
+  {
+    "name": "six",
+    "version": "1.17.0",
+    "filename": "six-1.17.0.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/94/e7/b2c673351809dca68a0e064b6af791aa332cf192da575fd474ed7d6f16a2/six-1.17.0.tar.gz",
+    "sha256": "ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81",
+    "size": 34031,
+    "license": "MIT"
+  },
+  {
+    "name": "termcolor",
+    "version": "3.3.0",
+    "filename": "termcolor-3.3.0.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/46/79/cf31d7a93a8fdc6aa0fbb665be84426a8c5a557d9240b6239e9e11e35fc5/termcolor-3.3.0.tar.gz",
+    "sha256": "348871ca648ec6a9a983a13ab626c0acce02f515b9e1983332b17af7979521c5",
+    "size": 14434,
+    "license": "MIT"
+  },
+  {
+    "name": "colorama",
+    "version": "0.4.6",
+    "filename": "colorama-0.4.6.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/d8/53/6f443c9a4a8358a93a6792e2acffb9d9d5cb0a5cfd8802644b7b1c9a02e4/colorama-0.4.6.tar.gz",
+    "sha256": "08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44",
+    "size": 27697,
+    "license": ""
+  },
+  {
+    "name": "more-itertools",
+    "version": "11.2.1",
+    "filename": "more_itertools-11.2.1.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/52/b8/c63995bebbb9ac9c059350e0fb8c82c2420c85aeca7d34e40aecf3df9281/more_itertools-11.2.1.tar.gz",
+    "sha256": "cbf08fd0af284dc69718b9b76a8e6203df624d70209ea511e4219d350c856f63",
+    "size": 154133,
+    "license": "MIT"
+  },
+  {
+    "name": "jmespath",
+    "version": "1.1.0",
+    "filename": "jmespath-1.1.0.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/d3/59/322338183ecda247fb5d1763a6cbe46eff7222eaeebafd9fa65d4bf5cb11/jmespath-1.1.0.tar.gz",
+    "sha256": "472c87d80f36026ae83c6ddd0f1d05d4e510134ed462851fd5f754c8c3cbb88d",
+    "size": 27377,
+    "license": "MIT"
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "name": "cachetools",
+  "mutate": [
+    "src/cachetools/__init__.py",
+    "src/cachetools/_cached.py",
+    "src/cachetools/_cachedmethod.py",
+    "src/cachetools/_descriptor.py",
+    "src/cachetools/func.py",
+    "src/cachetools/keys.py"
+  ],
+  "tests": [
+    "tests/test_cache.py",
+    "tests/test_cached.py",
+    "tests/test_cachedmethod.py",
+    "tests/test_classmethod.py",
+    "tests/test_fifo.py",
+    "tests/test_func.py",
+    "tests/test_keys.py",
+    "tests/test_lfu.py",
+    "tests/test_lru.py",
+    "tests/test_rr.py",
+    "tests/test_threading.py",
+    "tests/test_tlru.py",
+    "tests/test_ttl.py"
+  ],
+  "test_cmd": "PYTHONPATH=src python -m pytest -q",
+  "origin": "pypi:cachetools==7.2.3 sha256:e6fafd06de4a5bd915ff7d247588ea497e28c9a568c62db8678d9a5f11515a9a",
+  "license": "MIT",
+  "split": "train"
+}

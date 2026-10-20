@@ -1,0 +1,29 @@
+{
+  "run_id": "20261015-173936-gemini-relay-native",
+  "config": {
+    "name": "gemini-relay-native",
+    "model": "gemini-3.1-flash-lite",
+    "temperature": null,
+    "max_steps": 50,
+    "max_tokens": 16384,
+    "context_limit": 100000,
+    "keep_recent": 8,
+    "disabled_tools": [],
+    "api_style": "gemini",
+    "base_url_env": "RELAY_BASE_URL",
+    "api_key_env": "RELAY_API_KEY",
+    "api_retries": 8,
+    "api_timeout": 300,
+    "hypothesis": "gemini-3.1-flash-lite over the Gemini-native protocol through a forwarding relay (thought signatures handled by us)"
+  },
+  "config_hash": "8ac84b8fd6",
+  "split": "dev",
+  "repeat": 1,
+  "date": "2026-10-15 17:39:36",
+  "tasks": [
+    "b02-month-recurrence"
+  ],
+  "task_hashes": {
+    "b02-month-recurrence": "9b9b3d627fdf00c3"
+  }
+}

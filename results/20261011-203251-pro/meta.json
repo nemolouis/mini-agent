@@ -1,0 +1,34 @@
+{
+  "run_id": "20261011-203251-pro",
+  "config": {
+    "name": "pro",
+    "model": "deepseek-v4-pro",
+    "temperature": 0.0,
+    "max_steps": 30,
+    "max_tokens": 16384,
+    "context_limit": 100000,
+    "keep_recent": 8,
+    "disabled_tools": [],
+    "hypothesis": "model comparison with explicit model id; max_tokens raised 4096 -> 16384 because 4096 truncated thinking-heavy runs (class max_tokens)"
+  },
+  "config_hash": "a43c691338",
+  "split": "dev",
+  "repeat": 3,
+  "date": "2026-10-11 20:32:51",
+  "tasks": [
+    "b02-month-recurrence",
+    "b03-patch-apply",
+    "b05-interpolate",
+    "b08-csv-loader",
+    "b09-sliding-window",
+    "b12-sessions"
+  ],
+  "task_hashes": {
+    "b02-month-recurrence": "9b9b3d627fdf00c3",
+    "b03-patch-apply": "e496100c8fe04d69",
+    "b05-interpolate": "9e83cf166606d991",
+    "b08-csv-loader": "f3ae4859cbce0cec",
+    "b09-sliding-window": "ff7b36c7a5dbbf5f",
+    "b12-sessions": "e0ca0408004f7295"
+  }
+}

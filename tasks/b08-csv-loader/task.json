@@ -1,0 +1,5 @@
+{
+  "prompt": "Loading real-world CSV exports produces wrong or broken records. The expected behaviour is in docs/SPEC.md. Fix the loader.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

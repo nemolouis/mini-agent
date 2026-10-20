@@ -1,0 +1,16 @@
+{
+  "name": "gemini-relay-native",
+  "model": "gemini-3.1-flash-lite",
+  "temperature": null,
+  "max_steps": 50,
+  "max_tokens": 16384,
+  "context_limit": 100000,
+  "keep_recent": 8,
+  "disabled_tools": [],
+  "api_style": "gemini",
+  "base_url_env": "RELAY_BASE_URL",
+  "api_key_env": "RELAY_API_KEY",
+  "api_retries": 8,
+  "api_timeout": 300,
+  "hypothesis": "gemini-3.1-flash-lite over the Gemini-native protocol through a forwarding relay (thought signatures handled by us)"
+}

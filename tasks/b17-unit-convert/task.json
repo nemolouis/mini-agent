@@ -1,0 +1,5 @@
+{
+  "prompt": "convert() gives wrong answers or crashes for compound unit expressions and for invalid input. The expression syntax and error behaviour are documented in docs/SPEC.md. Fix it so the tests pass.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

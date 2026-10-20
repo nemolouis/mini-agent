@@ -1,0 +1,4 @@
+{
+  "prompt": "top_words should return the n most frequent words, ties broken alphabetically, case-insensitive. Fix it so tests pass.",
+  "test_cmd": "pytest -q"
+}

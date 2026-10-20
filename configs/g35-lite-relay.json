@@ -1,0 +1,16 @@
+{
+  "name": "g35-lite-relay",
+  "model": "gemini-3.5-flash-lite",
+  "temperature": null,
+  "max_steps": 50,
+  "max_tokens": 16384,
+  "context_limit": 100000,
+  "keep_recent": 8,
+  "disabled_tools": [],
+  "api_style": "gemini",
+  "base_url_env": "RELAY_BASE_URL",
+  "api_key_env": "RELAY_API_KEY",
+  "api_retries": 8,
+  "api_timeout": 300,
+  "hypothesis": "gemini-3.5-flash-lite over the native protocol via the relay: expected to sit between 3.1-flash-lite (26%) and DeepSeek flash (~90%+), i.e. a baseline with room in both directions; free quota 500 requests/day/project"
+}

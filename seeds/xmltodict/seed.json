@@ -1,0 +1,14 @@
+{
+  "name": "xmltodict",
+  "mutate": [
+    "xmltodict.py"
+  ],
+  "tests": [
+    "tests/test_dicttoxml.py",
+    "tests/test_xmltodict.py"
+  ],
+  "test_cmd": "python -m pytest -q",
+  "origin": "pypi:xmltodict==1.0.4 sha256:6d94c9f834dd9e44514162799d344d815a3a4faec913717a9ecbfa5be1bb8e61",
+  "license": "MIT",
+  "split": "test"
+}

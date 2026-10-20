@@ -1,0 +1,13 @@
+{
+  "name": "textkit",
+  "mutate": [
+    "textkit.py"
+  ],
+  "tests": [
+    "test_textkit.py"
+  ],
+  "test_cmd": "python -m pytest -q",
+  "origin": "written for this project (demo seed)",
+  "license": "MIT",
+  "split": "train"
+}

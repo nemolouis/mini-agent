@@ -1,0 +1,20 @@
+{
+  "name": "glm-flash-nothink",
+  "model": "glm-4.7-flash",
+  "temperature": 0.0,
+  "max_steps": 50,
+  "max_tokens": 16384,
+  "context_limit": 100000,
+  "keep_recent": 8,
+  "disabled_tools": [],
+  "base_url": "https://open.bigmodel.cn/api/paas/v4",
+  "api_key_env": "GLM_API_KEY",
+  "api_retries": 8,
+  "api_timeout": 300,
+  "extra_body": {
+    "thinking": {
+      "type": "disabled"
+    }
+  },
+  "hypothesis": "same model with thinking disabled: faster and fewer tokens; does accuracy drop?"
+}

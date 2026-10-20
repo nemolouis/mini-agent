@@ -1,0 +1,4 @@
+{
+  "prompt": "The rate limiter allows more requests than its configured rate over time. Fix it so the tests pass.",
+  "test_cmd": "pytest -q"
+}

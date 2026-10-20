@@ -1,0 +1,4 @@
+{
+  "prompt": "Loading CSV text with quoted fields produces wrong rows. Make parsing follow standard CSV quoting rules and make the tests pass.",
+  "test_cmd": "pytest -q"
+}

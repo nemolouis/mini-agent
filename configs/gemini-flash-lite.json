@@ -1,0 +1,15 @@
+{
+  "name": "gemini-flash-lite",
+  "model": "gemini-3.5-flash-lite",
+  "temperature": null,
+  "max_steps": 50,
+  "max_tokens": 16384,
+  "context_limit": 100000,
+  "keep_recent": 8,
+  "disabled_tools": [],
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "api_key_env": "GEMINI_API_KEY",
+  "api_retries": 8,
+  "api_timeout": 300,
+  "hypothesis": "smaller/cheaper Gemini tier: expected to sit clearly below gemini-3.8-flash, giving the benchmark some headroom"
+}

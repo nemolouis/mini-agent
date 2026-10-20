@@ -1,0 +1,5 @@
+{
+  "prompt": "The expression evaluator gives wrong results for some expressions and leaks internal Python exceptions. It should raise errors.ParseError / errors.EvalError as documented in the module docstrings. Fix it so the tests pass.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

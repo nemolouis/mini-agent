@@ -1,0 +1,5 @@
+{
+  "prompt": "schedule() does not follow the scheduling rules in docs/SPEC.md (priorities, handling of tasks that do not fit, simultaneous completions) and does not validate its input. Fix it so the tests pass.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

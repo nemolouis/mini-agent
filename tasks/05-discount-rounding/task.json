@@ -1,0 +1,4 @@
+{
+  "prompt": "Order totals are off by a cent for some discounts. The bug is not necessarily in the file the failing test imports. Find and fix the root cause so tests pass.",
+  "test_cmd": "pytest -q"
+}

@@ -1,0 +1,342 @@
+{
+  "parse": {
+    "tests": 102,
+    "test_files": [
+      "tests/test_bugs.py",
+      "tests/test_findall.py",
+      "tests/test_parse.py",
+      "tests/test_parsetype.py",
+      "tests/test_pattern.py",
+      "tests/test_result.py",
+      "tests/test_search.py"
+    ],
+    "mutate": [
+      "parse/__init__.py"
+    ],
+    "test_cmd": "python -m pytest -q",
+    "seconds": 1.6,
+    "dropped_test_files": {}
+  },
+  "toposort": {
+    "dropped": "suite does not run in the sandbox (rc 3): 'INTERNALERROR> SystemExit: 2\\n\\nno tests ran in 0.03s\\nusage: __main__.py [-h] [-v] [-q] [--locals] [--durations N] [-f] [-c] [-b]\\n                   [-k TESTNAMEPATTERNS]\\n                   [tests ...]\\n__main__.py: error: unrecognized arguments: --tb=no -rfE -p\\nmainloop: caught unexpected SystemExit!\\n'"
+  },
+  "xmltodict": {
+    "tests": 119,
+    "test_files": [
+      "tests/test_dicttoxml.py",
+      "tests/test_xmltodict.py"
+    ],
+    "mutate": [
+      "xmltodict.py"
+    ],
+    "test_cmd": "python -m pytest -q",
+    "seconds": 1.4,
+    "dropped_test_files": {}
+  },
+  "pytimeparse": {
+    "dropped": "the sdist contains no tests"
+  },
+  "inflection": {
+    "tests": 455,
+    "test_files": [
+      "test_inflection.py"
+    ],
+    "mutate": [
+      "inflection/__init__.py"
+    ],
+    "test_cmd": "python -m pytest -q",
+    "seconds": 0.9,
+    "dropped_test_files": {}
+  },
+  "schema": {
+    "tests": 118,
+    "test_files": [
+      "test_schema.py"
+    ],
+    "mutate": [
+      "schema/__init__.py"
+    ],
+    "test_cmd": "python -m pytest -q",
+    "seconds": 1.1,
+    "dropped_test_files": {}
+  },
+  "ordered_set": {
+    "tests": 30,
+    "test_files": [
+      "test/test_ordered_set.py"
+    ],
+    "mutate": [
+      "ordered_set/__init__.py"
+    ],
+    "test_cmd": "python -m pytest -q",
+    "seconds": 0.7,
+    "dropped_test_files": {}
+  },
+  "sortedcontainers": {
+    "dropped": "the sdist contains no tests"
+  },
+  "cachetools": {
+    "tests": 360,
+    "test_files": [
+      "tests/test_cache.py",
+      "tests/test_cached.py",
+      "tests/test_cachedmethod.py",
+      "tests/test_classmethod.py",
+      "tests/test_fifo.py",
+      "tests/test_func.py",
+      "tests/test_keys.py",
+      "tests/test_lfu.py",
+      "tests/test_lru.py",
+      "tests/test_rr.py",
+      "tests/test_threading.py",
+      "tests/test_tlru.py",
+      "tests/test_ttl.py"
+    ],
+    "mutate": [
+      "src/cachetools/__init__.py",
+      "src/cachetools/_cached.py",
+      "src/cachetools/_cachedmethod.py",
+      "src/cachetools/_descriptor.py",
+      "src/cachetools/func.py",
+      "src/cachetools/keys.py"
+    ],
+    "test_cmd": "PYTHONPATH=src python -m pytest -q",
+    "seconds": 2.4,
+    "dropped_test_files": {}
+  },
+  "toolz": {
+    "tests": 191,
+    "test_files": [
+      "toolz/sandbox/tests/test_core.py",
+      "toolz/sandbox/tests/test_parallel.py",
+      "toolz/tests/test_compatibility.py",
+      "toolz/tests/test_curried.py",
+      "toolz/tests/test_curried_doctests.py",
+      "toolz/tests/test_dicttoolz.py",
+      "toolz/tests/test_functoolz.py",
+      "toolz/tests/test_inspect_args.py",
+      "toolz/tests/test_itertoolz.py",
+      "toolz/tests/test_recipes.py",
+      "toolz/tests/test_serialization.py",
+      "toolz/tests/test_signatures.py",
+      "toolz/tests/test_tlz.py",
+      "toolz/tests/test_utils.py"
+    ],
+    "mutate": [
+      "tlz/_build_tlz.py",
+      "toolz/__init__.py",
+      "toolz/_signatures.py",
+      "toolz/compatibility.py",
+      "toolz/curried/__init__.py",
+      "toolz/dicttoolz.py",
+      "toolz/functoolz.py",
+      "toolz/itertoolz.py",
+      "toolz/recipes.py",
+      "toolz/sandbox/core.py",
+      "toolz/sandbox/parallel.py"
+    ],
+    "test_cmd": "python -m pytest -q",
+    "seconds": 4.2,
+    "dropped_test_files": {
+      "toolz/tests/test_package.py": "fails in the sandbox"
+    }
+  },
+  "boltons": {
+    "tests": 519,
+    "test_files": [
+      "tests/test_cacheutils.py",
+      "tests/test_debugutils_trace.py",
+      "tests/test_dictutils.py",
+      "tests/test_ecoutils.py",
+      "tests/test_fileutils.py",
+      "tests/test_formatutils.py",
+      "tests/test_funcutils.py",
+      "tests/test_funcutils_fb.py",
+      "tests/test_funcutils_fb_py3.py",
+      "tests/test_gcutils.py",
+      "tests/test_ioutils.py",
+      "tests/test_iterutils.py",
+      "tests/test_jsonutils.py",
+      "tests/test_listutils.py",
+      "tests/test_mathutils.py",
+      "tests/test_namedutils.py",
+      "tests/test_pathutils.py",
+      "tests/test_queueutils.py",
+      "tests/test_setutils.py",
+      "tests/test_socketutils.py",
+      "tests/test_statsutils.py",
+      "tests/test_statsutils_histogram.py",
+      "tests/test_strutils.py",
+      "tests/test_tableutils.py",
+      "tests/test_tbutils.py",
+      "tests/test_tbutils_parsed_exc.py",
+      "tests/test_timeutils.py",
+      "tests/test_typeutils.py",
+      "tests/test_urlutils.py"
+    ],
+    "mutate": [
+      "boltons/cacheutils.py",
+      "boltons/debugutils.py",
+      "boltons/deprutils.py",
+      "boltons/dictutils.py",
+      "boltons/ecoutils.py",
+      "boltons/excutils.py",
+      "boltons/fileutils.py",
+      "boltons/formatutils.py",
+      "boltons/funcutils.py",
+      "boltons/gcutils.py",
+      "boltons/ioutils.py",
+      "boltons/iterutils.py",
+      "boltons/jsonutils.py",
+      "boltons/listutils.py",
+      "boltons/mathutils.py",
+      "boltons/mboxutils.py",
+      "boltons/namedutils.py",
+      "boltons/pathutils.py",
+      "boltons/queueutils.py",
+      "boltons/setutils.py",
+      "boltons/socketutils.py",
+      "boltons/statsutils.py",
+      "boltons/strutils.py",
+      "boltons/tableutils.py",
+      "boltons/tbutils.py",
+      "boltons/timeutils.py",
+      "boltons/typeutils.py",
+      "boltons/urlutils.py"
+    ],
+    "test_cmd": "python -m pytest -q",
+    "seconds": 10.0,
+    "dropped_test_files": {}
+  },
+  "tabulate": {
+    "tests": 280,
+    "test_files": [
+      "test/test_api.py",
+      "test/test_cli.py",
+      "test/test_input.py",
+      "test/test_internal.py",
+      "test/test_output.py",
+      "test/test_regression.py",
+      "test/test_textwrapper.py"
+    ],
+    "mutate": [
+      "tabulate/__init__.py"
+    ],
+    "test_cmd": "python -m pytest -q",
+    "seconds": 2.2,
+    "dropped_test_files": {}
+  },
+  "jsonpointer": {
+    "dropped": "suite does not run in the sandbox (rc 5): '\\nno tests ran in 0.00s\\n'"
+  },
+  "sqlparse": {
+    "tests": 506,
+    "test_files": [
+      "tests/test_cli.py",
+      "tests/test_dos_prevention.py",
+      "tests/test_format.py",
+      "tests/test_grouping.py",
+      "tests/test_keywords.py",
+      "tests/test_parse.py",
+      "tests/test_regressions.py",
+      "tests/test_split.py",
+      "tests/test_tokenize.py",
+      "tests/test_utils.py"
+    ],
+    "mutate": [
+      "sqlparse/__init__.py",
+      "sqlparse/cli.py",
+      "sqlparse/engine/filter_stack.py",
+      "sqlparse/engine/grouping.py",
+      "sqlparse/engine/statement_splitter.py",
+      "sqlparse/filters/__init__.py",
+      "sqlparse/filters/aligned_indent.py",
+      "sqlparse/filters/others.py",
+      "sqlparse/filters/output.py",
+      "sqlparse/filters/reindent.py",
+      "sqlparse/filters/right_margin.py",
+      "sqlparse/filters/tokens.py",
+      "sqlparse/formatter.py",
+      "sqlparse/keywords.py",
+      "sqlparse/lexer.py",
+      "sqlparse/sql.py",
+      "sqlparse/tokens.py",
+      "sqlparse/utils.py"
+    ],
+    "test_cmd": "python -m pytest -q",
+    "seconds": 3.1,
+    "dropped_test_files": {}
+  },
+  "decorator": {
+    "tests": 25,
+    "test_files": [
+      "tests/test.py"
+    ],
+    "mutate": [
+      "src/decorator/__init__.py"
+    ],
+    "test_cmd": "PYTHONPATH=src python -m pytest -q",
+    "seconds": 6.5,
+    "dropped_test_files": {}
+  },
+  "six": {
+    "tests": 185,
+    "test_files": [
+      "test_six.py"
+    ],
+    "mutate": [
+      "documentation/conf.py",
+      "six.py"
+    ],
+    "test_cmd": "python -m pytest -q",
+    "seconds": 3.0,
+    "dropped_test_files": {}
+  },
+  "termcolor": {
+    "tests": 85,
+    "test_files": [
+      "tests/test_termcolor.py"
+    ],
+    "mutate": [
+      "src/termcolor/__init__.py",
+      "src/termcolor/termcolor.py"
+    ],
+    "test_cmd": "PYTHONPATH=src python -m pytest -q",
+    "seconds": 0.8,
+    "dropped_test_files": {}
+  },
+  "colorama": {
+    "tests": 38,
+    "test_files": [
+      "colorama/tests/ansi_test.py",
+      "colorama/tests/ansitowin32_test.py",
+      "colorama/tests/initialise_test.py",
+      "colorama/tests/isatty_test.py",
+      "colorama/tests/winterm_test.py"
+    ],
+    "mutate": [
+      "colorama/ansi.py",
+      "colorama/ansitowin32.py",
+      "colorama/initialise.py",
+      "colorama/win32.py",
+      "colorama/winterm.py"
+    ],
+    "test_cmd": "python -m pytest -q",
+    "seconds": 1.0,
+    "dropped_test_files": {}
+  },
+  "more_itertools": {
+    "dropped": "the suite takes 55s; too slow to run once per mutant",
+    "tests": 765
+  },
+  "jmespath": {
+    "dropped": "only 1 tests pass",
+    "dropped_test_files": {
+      "tests/test_search.py": "fails in the sandbox",
+      "tests/test_compliance.py": "fails in the sandbox",
+      "tests/test_lexer.py": "fails in the sandbox",
+      "tests/test_parser.py": "fails in the sandbox",
+      "tests/test_functions.py": "fails in the sandbox"
+    }
+  }
+}

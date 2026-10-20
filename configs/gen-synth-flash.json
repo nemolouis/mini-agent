@@ -1,0 +1,15 @@
+{
+  "name": "gen-synth-flash",
+  "model": "deepseek-flash",
+  "temperature": 0.7,
+  "max_steps": 30,
+  "max_tokens": 16384,
+  "context_limit": 100000,
+  "keep_recent": 8,
+  "disabled_tools": [],
+  "hypothesis": "stage-3 synthesis: DeepSeek flash as the teacher on all train-split generated tasks, 2 samples each at temperature 0.7 (at 0.0 a repeat would be a near-copy and be deduplicated); keep thinking text for the with/without-reasoning SFT ablation. Pilot: 30/30 pass, 8.3 steps, about 0.002-0.004 USD per run, so about 514 runs should cost a few USD and take about an hour at 4 workers.",
+  "base_url": "https://api.deepseek.com",
+  "api_key_env": "DEEPSEEK_API_KEY",
+  "sandbox": true,
+  "log_reasoning": true
+}

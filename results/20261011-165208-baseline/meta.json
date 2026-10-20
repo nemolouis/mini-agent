@@ -1,0 +1,40 @@
+{
+  "run_id": "20261011-165208-baseline",
+  "config": {
+    "name": "baseline",
+    "model": "deepseek-chat",
+    "temperature": 0.0,
+    "max_steps": 30,
+    "max_tokens": 4096,
+    "context_limit": 100000,
+    "keep_recent": 8,
+    "disabled_tools": [],
+    "hypothesis": "baseline, no hypothesis"
+  },
+  "config_hash": "a3c57d08e9",
+  "split": "dev",
+  "repeat": 3,
+  "date": "2026-10-11 16:52:08",
+  "tasks": [
+    "01-moving-average",
+    "02-shared-default",
+    "03-parse-duration",
+    "04-top-words",
+    "07-utc-epoch",
+    "08-config-merge",
+    "10-lru-memo",
+    "11-token-bucket",
+    "12-pagination"
+  ],
+  "task_hashes": {
+    "01-moving-average": "a16d19483ce54994",
+    "02-shared-default": "df4f878acb7d870f",
+    "03-parse-duration": "ad24b013b3892226",
+    "04-top-words": "e6771c27240199e7",
+    "07-utc-epoch": "bb10f000673651d2",
+    "08-config-merge": "1d5787c9c2757e57",
+    "10-lru-memo": "32b23dbe33b4df6f",
+    "11-token-bucket": "ab96ea2129561a8d",
+    "12-pagination": "b3cb78c7624aca84"
+  }
+}

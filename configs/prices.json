@@ -1,0 +1,99 @@
+{
+  "_comment": "USD per 1M tokens, from the provider price page. Two tiers (off_peak / peak); reports show both. Column-to-model mapping inferred from the screenshot (cheaper, 2500-concurrency column = flash); confirm against the page header.",
+  "deepseek-flash": {
+    "off_peak": {
+      "cache_read": 0.003,
+      "input": 0.15,
+      "output": 0.6
+    },
+    "peak": {
+      "cache_read": 0.006,
+      "input": 0.3,
+      "output": 1.2
+    }
+  },
+  "deepseek-v4-pro": {
+    "off_peak": {
+      "cache_read": 0.022,
+      "input": 0.66,
+      "output": 1.98
+    },
+    "peak": {
+      "cache_read": 0.044,
+      "input": 1.32,
+      "output": 3.96
+    }
+  },
+  "deepseek-chat": {
+    "off_peak": {
+      "cache_read": null,
+      "input": null,
+      "output": null
+    },
+    "peak": {
+      "cache_read": null,
+      "input": null,
+      "output": null
+    }
+  },
+  "glm-4.7-flash": {
+    "off_peak": {
+      "cache_read": 0.0,
+      "input": 0.0,
+      "output": 0.0
+    },
+    "peak": {
+      "cache_read": 0.0,
+      "input": 0.0,
+      "output": 0.0
+    }
+  },
+  "gemini-3.8-flash": {
+    "off_peak": {
+      "cache_read": null,
+      "input": null,
+      "output": null
+    },
+    "peak": {
+      "cache_read": null,
+      "input": null,
+      "output": null
+    }
+  },
+  "gemini-3.5-flash-lite": {
+    "off_peak": {
+      "cache_read": null,
+      "input": null,
+      "output": null
+    },
+    "peak": {
+      "cache_read": null,
+      "input": null,
+      "output": null
+    }
+  },
+  "gemma-4-31b-it": {
+    "off_peak": {
+      "cache_read": 0.0,
+      "input": 0.0,
+      "output": 0.0
+    },
+    "peak": {
+      "cache_read": 0.0,
+      "input": 0.0,
+      "output": 0.0
+    }
+  },
+  "gemini-3.1-flash-lite": {
+    "off_peak": {
+      "cache_read": null,
+      "input": null,
+      "output": null
+    },
+    "peak": {
+      "cache_read": null,
+      "input": null,
+      "output": null
+    }
+  }
+}

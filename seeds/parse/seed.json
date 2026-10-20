@@ -1,0 +1,19 @@
+{
+  "name": "parse",
+  "mutate": [
+    "parse/__init__.py"
+  ],
+  "tests": [
+    "tests/test_bugs.py",
+    "tests/test_findall.py",
+    "tests/test_parse.py",
+    "tests/test_parsetype.py",
+    "tests/test_pattern.py",
+    "tests/test_result.py",
+    "tests/test_search.py"
+  ],
+  "test_cmd": "python -m pytest -q",
+  "origin": "pypi:parse==1.22.3 sha256:7e79bb39c72c3bf1613510fd5cdffe5baa9a7873892bef1d4566f1672c8a42f4",
+  "license": "MIT",
+  "split": "train"
+}

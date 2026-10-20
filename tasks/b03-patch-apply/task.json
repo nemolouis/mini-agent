@@ -1,0 +1,5 @@
+{
+  "prompt": "apply_patch doesn't reliably apply unified diffs: some multi-hunk patches produce wrong output and bad patches are not rejected. Fix it so the tests pass and it correctly implements unified diff application as documented in the docstrings.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

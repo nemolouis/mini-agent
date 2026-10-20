@@ -1,0 +1,11 @@
+{
+  "name": "baseline",
+  "model": "deepseek-flash",
+  "temperature": 0.0,
+  "max_steps": 30,
+  "max_tokens": 4096,
+  "context_limit": 100000,
+  "keep_recent": 8,
+  "disabled_tools": [],
+  "hypothesis": "baseline, no hypothesis"
+}

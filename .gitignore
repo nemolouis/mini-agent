@@ -1,0 +1,21 @@
+# local environments and large artefacts
+.venv/
+.venv-mlx/
+models/
+adapters/
+*.egg-info/
+__pycache__/
+.pytest_cache/
+.DS_Store
+*.bak
+
+# raw runs stay local: they hold third-party model outputs and local paths. Per-result reports and summaries are kept.
+runs/
+results/*/trajectories/
+results/*/runs.jsonl
+results/*/workspaces/
+
+# generated tasks (about 95 MB, contain third-party code) and training data (model outputs) are regenerated, see their READMEs
+gen_tasks/g-*/
+data/*.jsonl
+data/sft_train_v1*

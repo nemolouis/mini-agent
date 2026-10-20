@@ -1,0 +1,13 @@
+{
+  "name": "steps10",
+  "model": "deepseek-flash",
+  "temperature": 0.0,
+  "max_steps": 10,
+  "max_tokens": 16384,
+  "context_limit": 100000,
+  "keep_recent": 8,
+  "disabled_tools": [],
+  "base_url": "https://api.deepseek.com",
+  "api_key_env": "DEEPSEEK_API_KEY",
+  "hypothesis": "PREDICTION: tasks whose baseline mean steps >= 10 (b16, b19, b21, b25) shift to max_steps; overall drop 15-30 points; tasks with <= 7 steps unaffected."
+}

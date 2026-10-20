@@ -1,0 +1,5 @@
+{
+  "prompt": "String interpolation doesn't behave as documented in docs/INTERPOLATION.md. Fix the implementation so it conforms.",
+  "test_cmd": "pytest -q",
+  "layer": "B"
+}

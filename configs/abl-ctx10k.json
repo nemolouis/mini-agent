@@ -1,0 +1,14 @@
+{
+  "name": "ctx10k",
+  "model": "deepseek-flash",
+  "temperature": 0.0,
+  "max_steps": 50,
+  "max_tokens": 16384,
+  "context_limit": 10000,
+  "keep_recent": 4,
+  "disabled_tools": [],
+  "base_url": "https://api.deepseek.com",
+  "api_key_env": "DEEPSEEK_API_KEY",
+  "hypothesis": "PREDICTION (a feasible limit; the baseline's peak input per run has median 8.5k and p90 20.7k tokens, so the 7000-token threshold is crossed in roughly half of the runs): at most 1-2 summary compactions per affected run, compaction always brings the input back below the threshold (no `compaction_floor` events), mean steps within 20% of the baseline, and a pass rate within 10 points of 90%. A larger drop, concentrated in `tests_failed_after_edit` on runs that compacted, would be real evidence of information lost in summaries.",
+  "compact_regrowth": 1.0
+}

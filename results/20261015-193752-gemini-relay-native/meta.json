@@ -1,0 +1,53 @@
+{
+  "run_id": "20261015-193752-gemini-relay-native",
+  "config": {
+    "name": "gemini-relay-native",
+    "model": "gemini-3.1-flash-lite",
+    "temperature": null,
+    "max_steps": 50,
+    "max_tokens": 16384,
+    "context_limit": 100000,
+    "keep_recent": 8,
+    "disabled_tools": [],
+    "api_style": "gemini",
+    "base_url_env": "RELAY_BASE_URL",
+    "api_key_env": "RELAY_API_KEY",
+    "api_retries": 8,
+    "api_timeout": 300,
+    "hypothesis": "gemini-3.1-flash-lite over the Gemini-native protocol through a forwarding relay (thought signatures handled by us)"
+  },
+  "config_hash": "8ac84b8fd6",
+  "split": "dev",
+  "repeat": 3,
+  "date": "2026-10-15 19:37:52",
+  "tasks": [
+    "b02-month-recurrence",
+    "b05-interpolate",
+    "b08-csv-loader",
+    "b09-sliding-window",
+    "b12-sessions",
+    "b13-interval-set",
+    "b15-cron-next",
+    "b16-text-diff",
+    "b19-regex-engine",
+    "b21-timer-queue",
+    "b23-meeting-slots",
+    "b25-patch-apply-v2",
+    "b26-linear-solver-v2"
+  ],
+  "task_hashes": {
+    "b02-month-recurrence": "9b9b3d627fdf00c3",
+    "b05-interpolate": "9e83cf166606d991",
+    "b08-csv-loader": "f3ae4859cbce0cec",
+    "b09-sliding-window": "ff7b36c7a5dbbf5f",
+    "b12-sessions": "e0ca0408004f7295",
+    "b13-interval-set": "43cf1252a0245077",
+    "b15-cron-next": "0ae340c12260ebad",
+    "b16-text-diff": "ac76057c78d3afee",
+    "b19-regex-engine": "676c9c80c6fe6c7b",
+    "b21-timer-queue": "dc765c9a2aa353b7",
+    "b23-meeting-slots": "f9d0154e50b95851",
+    "b25-patch-apply-v2": "77b755213ebff7b1",
+    "b26-linear-solver-v2": "483c4ba6824119ad"
+  }
+}

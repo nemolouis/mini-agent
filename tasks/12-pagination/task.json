@@ -1,0 +1,4 @@
+{
+  "prompt": "The users listing endpoint returns the wrong items per page and wrong paging metadata. Pages are 1-based; a page below 1 must raise ValueError; an empty list has 0 total pages. Fix it so the tests pass.",
+  "test_cmd": "pytest -q"
+}

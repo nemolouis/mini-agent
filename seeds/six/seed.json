@@ -1,0 +1,14 @@
+{
+  "name": "six",
+  "mutate": [
+    "documentation/conf.py",
+    "six.py"
+  ],
+  "tests": [
+    "test_six.py"
+  ],
+  "test_cmd": "python -m pytest -q",
+  "origin": "pypi:six==1.17.0 sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81",
+  "license": "MIT",
+  "split": "train"
+}

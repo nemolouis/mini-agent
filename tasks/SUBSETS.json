@@ -1,0 +1,15 @@
+{
+  "_note": "Named task subsets for quota-limited runs. A subset is chosen from the pass rates of one model, so a baseline for comparisons must be re-run fresh on the subset (selection on the same runs biases it toward 50%).",
+  "g35-mid": {
+    "tasks": [
+      "b08-csv-loader",
+      "b12-sessions",
+      "b13-interval-set",
+      "b16-text-diff"
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "date": "2026-10-16",
+    "why": "pooled pass rates 0.50-0.75 over n>=3 runs (b08 3/4, b12 2/4, b13 2/4, b16 2/3); excluded: b02/b05/b09 (4/4, ceiling), b15 (0/4, floor), b19/b21/b23/b25/b26 (n=1, undecided)",
+    "expected_requests_per_condition_3_repeats": 233
+  }
+}

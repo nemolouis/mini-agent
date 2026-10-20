@@ -1,0 +1,17 @@
+{
+  "name": "g35-ctx12k",
+  "model": "gemini-3.5-flash-lite",
+  "temperature": null,
+  "max_steps": 50,
+  "max_tokens": 16384,
+  "context_limit": 12000,
+  "keep_recent": 4,
+  "disabled_tools": [],
+  "api_style": "gemini",
+  "base_url_env": "RELAY_BASE_URL",
+  "api_key_env": "RELAY_API_KEY",
+  "api_retries": 8,
+  "api_timeout": 300,
+  "hypothesis": "PREDICTION (feasible limit; baseline peak input per run: median 10.7k tokens, so the 8400-token threshold is crossed in about 10 of 12 runs): <= 3 summary compactions per affected run, compaction always gets below the threshold (no `compaction_floor` events), mean steps within 25% of the baseline's 22.6 (<= 28). Pass rate versus the g35-mid baseline (33%, n=12): within +-25 points; with n=12 only a larger change could be detected, so a smaller drop concentrated in runs that compacted would be a hint about summary information loss, not a finding.",
+  "compact_regrowth": 1.0
+}

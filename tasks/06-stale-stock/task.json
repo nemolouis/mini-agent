@@ -1,0 +1,4 @@
+{
+  "prompt": "After restocking an item, the stock level reported to users is still the old number. Find and fix the root cause so the tests pass.",
+  "test_cmd": "pytest -q"
+}

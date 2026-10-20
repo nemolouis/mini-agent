@@ -1,0 +1,178 @@
+{
+  "notes": [
+    "2026-10-12: tasks b13..b24 were re-split by hash rank (40% test) before any run, because the per-id hash had put all 12 in dev. No other entry was changed.",
+    "2026-10-12: refreshed hashes of b16-text-diff, b19-regex-engine, b23-meeting-slots. Their tests/reference solutions were corrected after the split was frozen but before any model run (verified: no results/ entry contains them). No split labels were changed.",
+    "2026-10-12: after the first flash run on B-dev, b03 and b22 were found to be defective tasks (4 of the 5 failures); retired, replaced by b25/b26 (new ids, same split side)."
+  ],
+  "retired": {
+    "b03-patch-apply": "spec contradiction: docstring ('ends with a newline iff the original did') literally requires '\\n' for an empty result; hidden test expects ''. Replaced by b25-patch-apply-v2.",
+    "b22-linear-solver": "spec gap: zero-column matrix [[]] not declared invalid yet hidden test requires ValueError. Replaced by b26-linear-solver-v2."
+  },
+  "tasks": {
+    "01-moving-average": {
+      "hash": "a16d19483ce54994",
+      "split": "dev"
+    },
+    "02-shared-default": {
+      "hash": "df4f878acb7d870f",
+      "split": "dev"
+    },
+    "03-parse-duration": {
+      "hash": "ad24b013b3892226",
+      "split": "dev"
+    },
+    "04-top-words": {
+      "hash": "e6771c27240199e7",
+      "split": "dev"
+    },
+    "05-discount-rounding": {
+      "hash": "462d4b989e599223",
+      "split": "test"
+    },
+    "06-stale-stock": {
+      "hash": "111643fc23fe843c",
+      "split": "test"
+    },
+    "07-utc-epoch": {
+      "hash": "bb10f000673651d2",
+      "split": "dev"
+    },
+    "08-config-merge": {
+      "hash": "1d5787c9c2757e57",
+      "split": "dev"
+    },
+    "09-csv-quotes": {
+      "hash": "5e5e6a58da6c9827",
+      "split": "test"
+    },
+    "10-lru-memo": {
+      "hash": "32b23dbe33b4df6f",
+      "split": "dev"
+    },
+    "11-token-bucket": {
+      "hash": "ab96ea2129561a8d",
+      "split": "dev"
+    },
+    "12-pagination": {
+      "hash": "b3cb78c7624aca84",
+      "split": "dev"
+    },
+    "13-event-bus": {
+      "hash": "45fdce2d45f8d159",
+      "split": "test"
+    },
+    "14-build-order": {
+      "hash": "33a89d593cbc50f3",
+      "split": "test"
+    },
+    "15-cli-json-filter": {
+      "hash": "205baaacab509c74",
+      "split": "test"
+    },
+    "b01-semver": {
+      "hash": "030b4537e74a30d5",
+      "split": "test"
+    },
+    "b02-month-recurrence": {
+      "hash": "9b9b3d627fdf00c3",
+      "split": "dev"
+    },
+    "b03-patch-apply": {
+      "hash": "e496100c8fe04d69",
+      "split": "dev"
+    },
+    "b04-expr-eval": {
+      "hash": "d74440d7ac1ac705",
+      "split": "test"
+    },
+    "b05-interpolate": {
+      "hash": "9e83cf166606d991",
+      "split": "dev"
+    },
+    "b06-bank-transfer": {
+      "hash": "cb8a5b403029685f",
+      "split": "test"
+    },
+    "b07-dep-resolver": {
+      "hash": "cd537e3d6838ae9b",
+      "split": "test"
+    },
+    "b08-csv-loader": {
+      "hash": "f3ae4859cbce0cec",
+      "split": "dev"
+    },
+    "b09-sliding-window": {
+      "hash": "ff7b36c7a5dbbf5f",
+      "split": "dev"
+    },
+    "b10-table-width": {
+      "hash": "a475eff9ee2b1826",
+      "split": "test"
+    },
+    "b11-undo-redo": {
+      "hash": "56cd1a4f79e99cf0",
+      "split": "test"
+    },
+    "b12-sessions": {
+      "hash": "e0ca0408004f7295",
+      "split": "dev"
+    },
+    "b13-interval-set": {
+      "hash": "43cf1252a0245077",
+      "split": "dev"
+    },
+    "b14-json-patch": {
+      "hash": "3b2b464d451614d8",
+      "split": "test"
+    },
+    "b15-cron-next": {
+      "hash": "0ae340c12260ebad",
+      "split": "dev"
+    },
+    "b16-text-diff": {
+      "hash": "ac76057c78d3afee",
+      "split": "dev"
+    },
+    "b17-unit-convert": {
+      "hash": "36e9ceb864262ce0",
+      "split": "test"
+    },
+    "b18-task-scheduler": {
+      "hash": "63e70582b14f2927",
+      "split": "test"
+    },
+    "b19-regex-engine": {
+      "hash": "676c9c80c6fe6c7b",
+      "split": "dev"
+    },
+    "b20-three-way-merge": {
+      "hash": "e4220809c7b0f1ed",
+      "split": "test"
+    },
+    "b21-timer-queue": {
+      "hash": "dc765c9a2aa353b7",
+      "split": "dev"
+    },
+    "b22-linear-solver": {
+      "hash": "ba1dcf9f55978e26",
+      "split": "dev"
+    },
+    "b23-meeting-slots": {
+      "hash": "f9d0154e50b95851",
+      "split": "dev"
+    },
+    "b24-weighted-cache": {
+      "hash": "aaefa6127ea858a8",
+      "split": "test"
+    },
+    "b25-patch-apply-v2": {
+      "hash": "77b755213ebff7b1",
+      "split": "dev"
+    },
+    "b26-linear-solver-v2": {
+      "hash": "483c4ba6824119ad",
+      "split": "dev"
+    }
+  },
+  "version": 1
+}

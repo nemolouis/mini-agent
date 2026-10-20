@@ -1,0 +1,15 @@
+{
+  "name": "no-grep",
+  "model": "deepseek-flash",
+  "temperature": 0.0,
+  "max_steps": 50,
+  "max_tokens": 16384,
+  "context_limit": 100000,
+  "keep_recent": 8,
+  "disabled_tools": [
+    "grep"
+  ],
+  "base_url": "https://api.deepseek.com",
+  "api_key_env": "DEEPSEEK_API_KEY",
+  "hypothesis": "PREDICTION: no change (|diff| <= 5 points). Repos are 2-5 files and read_file is still available; mean steps may rise slightly."
+}

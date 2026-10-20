@@ -1,0 +1,4 @@
+{
+  "prompt": "EventBus.publish is unreliable: some handlers are skipped when another handler unsubscribes during dispatch, and one failing handler prevents the rest from running. Required behaviour: every subscribed handler runs once per publish; exceptions are caught and publish returns the list of exceptions raised (empty if none); calling an unsubscribe function twice is harmless. Fix it so the tests pass.",
+  "test_cmd": "pytest -q"
+}
