@@ -1,0 +1,18 @@
+{
+  "temperature": 0.0,
+  "max_steps": 30,
+  "max_tokens": 1024,
+  "context_limit": 20000,
+  "keep_recent": 8,
+  "disabled_tools": [],
+  "sandbox": true,
+  "log_reasoning": false,
+  "model": "default_model",
+  "api_key_env": "MLX_API_KEY",
+  "api_timeout": 900,
+  "api_retries": 1,
+  "name": "student-q4-v3-step300",
+  "base_url": "http://127.0.0.1:8082/v1",
+  "hypothesis": "the step-300 checkpoint of the third QLoRA run, the one with the lowest validation loss (0.675), on the dev split of the generated tasks (48 tasks, unseen libraries colorama and schema). Checkpoint choice was fixed BEFORE looking at any dev result: the final adapter is the primary result, step 300 the secondary; both are reported. Untrained 4-bit base: 0/48 (no tool calls). Tool calls are read from the reply text (text_tool_calls): the model learned the format, but <tool_call> / </tool_call> have untrained embeddings in this model and it emits token 124 for both.",
+  "text_tool_calls": true
+}

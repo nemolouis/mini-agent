@@ -257,3 +257,62 @@ def test_gemini_response_parsing_signature_usage_and_finish(monkeypatch):
     data3 = {"promptFeedback": {"blockReason": "SAFETY"}}
     monkeypatch.setattr(c, "_post", lambda p, b: data3)
     assert c.chat(model="m", messages=[{"role": "user", "content": "x"}]).finish_reason == "safety"
+
+
+# ------------------------------------------------------------------ tool calls written as plain JSON in the reply text
+from miniagent.client import extract_text_tool_calls  # noqa: E402
+
+TOOLS = [{"type": "function", "function": {"name": n, "description": "", "parameters": {"type": "object", "properties": {}}}}
+         for n in ("bash", "read_file", "edit_file")]
+NAMES = {"bash", "read_file", "edit_file"}
+MARK = "�"         # what the server shows for token 124, which the model emits instead of <tool_call> / </tool_call>
+
+
+def reply(content, finish="stop", tool_calls=None, text_tool_calls=True):
+    c = ChatClient(api_key="k", base_url="http://x", text_tool_calls=text_tool_calls)
+    msg = {"content": content, **({"tool_calls": tool_calls} if tool_calls else {})}
+    c._post = lambda path, body: {"choices": [{"finish_reason": finish, "message": msg}], "usage": {}}
+    return c.chat(model="m", messages=[{"role": "user", "content": "hi"}], tools=TOOLS)
+
+
+def test_markers_replaced_by_token_124_are_read_as_tool_calls():
+    r = reply(f'I\'ll start by exploring.\n{MARK}\n{{"name": "bash", "arguments": {{"command": "ls -la"}}}}\n{MARK}')
+    assert r.finish_reason == "tool_calls" and r.text == "I'll start by exploring."
+    assert [(c.name, json.loads(c.arguments)) for c in r.tool_calls] == [("bash", {"command": "ls -la"})]
+
+
+def test_several_calls_in_one_reply_keep_their_order_and_get_distinct_ids():
+    r = reply(f'x\n{MARK}\n{{"name": "read_file", "arguments": {{"path": "a.py"}}}}\n{MARK}\n{MARK}\n'
+              f'{{"name": "bash", "arguments": {{"command": "pytest -q"}}}}\n{MARK}')
+    assert [c.name for c in r.tool_calls] == ["read_file", "bash"] and len({c.id for c in r.tool_calls}) == 2
+
+
+def test_braces_inside_string_arguments_do_not_confuse_the_parser():
+    code = 'def f(x):\n    return {"a": x}\n'
+    r = reply(json.dumps({"name": "edit_file", "arguments": {"path": "m.py", "old_string": "return {}", "new_string": code}}))
+    assert json.loads(r.tool_calls[0].arguments)["new_string"] == code
+
+
+def test_only_offered_tools_count_and_other_json_is_left_alone():
+    text = 'Here is the config: {"name": "settings", "arguments": {"x": 1}} and {"name": "bash"} and {broken'
+    assert extract_text_tool_calls(text, NAMES)[1][0].name == "bash"          # {"name": "bash"} without arguments is a call with {}
+    r = reply('{"name": "settings", "arguments": {"x": 1}}')
+    assert r.tool_calls == [] and r.finish_reason == "stop" and "settings" in r.text
+
+
+def test_a_server_that_returns_real_tool_calls_is_not_touched():
+    real = [{"id": "t1", "type": "function", "function": {"name": "bash", "arguments": '{"command": "ls"}'}}]
+    r = reply('{"name": "read_file", "arguments": {"path": "x"}}', finish="tool_calls", tool_calls=real)
+    assert [c.id for c in r.tool_calls] == ["t1"] and "read_file" in r.text
+
+
+def test_it_is_off_unless_asked_for_and_a_truncated_call_is_not_invented():
+    text = f'{MARK}\n{{"name": "bash", "arguments": {{"command": "ls"}}}}\n{MARK}'
+    assert reply(text, text_tool_calls=False).tool_calls == []
+    cut = reply(f'{MARK}\n{{"name": "bash", "arguments": {{"command": "ls -', finish="length")
+    assert cut.tool_calls == [] and cut.finish_reason == "length"
+
+
+def test_arguments_given_as_a_json_string_are_kept_as_that_string():
+    r = reply('{"name": "bash", "arguments": "{\\"command\\": \\"ls\\"}"}')
+    assert json.loads(r.tool_calls[0].arguments) == {"command": "ls"}

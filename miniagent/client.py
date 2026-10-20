@@ -48,6 +48,32 @@ def suggested_delay(body: str) -> float | None:
     return float(m.group(1)) if m else None
 
 
+def extract_text_tool_calls(text: str, tool_names: set[str]) -> tuple[str, list["ToolCall"]]:
+    """Tool calls written as plain JSON objects in the reply text -> (text without them, calls).
+
+    For a model that cannot emit its chat template's tool-call markers. The case that motivated it: in Qwen2.5-Coder-1.5B the
+    embeddings of <tool_call> / </tool_call> are untrained placeholders, practically equal to that of token 124, and the output
+    layer is tied to the embeddings, so a fine-tuned model that has learned the whole format still emits token 124 (decoded as
+    U+FFFD) where the markers belong, and the server never sees a tool call. Only objects {"name": <an offered tool>,
+    "arguments": {...}} count; stray U+FFFD characters and marker strings are dropped from the remaining text."""
+    dec, calls, out, i = json.JSONDecoder(), [], [], 0
+    while i < len(text):
+        if text[i] == "{":
+            try:
+                obj, end = dec.raw_decode(text, i)
+            except ValueError:
+                obj, end = None, i
+            if isinstance(obj, dict) and obj.get("name") in tool_names and isinstance(obj.get("arguments", {}), (dict, str)):
+                args = obj.get("arguments", {})
+                calls.append(ToolCall(f"call_{len(calls)}", obj["name"], args if isinstance(args, str) else json.dumps(args, ensure_ascii=False)))
+                i = end
+                continue
+        out.append(text[i])
+        i += 1
+    cleaned = "".join(out).replace("\ufffd", "").replace("<tool_call>", "").replace("</tool_call>", "")
+    return re.sub(r"\n{3,}", "\n\n", cleaned).strip() if calls else text, calls
+
+
 @dataclass
 class ToolCall:
     id: str
@@ -71,7 +97,7 @@ class ModelResponse:
 class ChatClient:
     def __init__(self, api_key: str | None = None, base_url: str | None = None,
                  timeout: float = 120, retries: int = 6, extra_body: dict | None = None,
-                 tool_result_json: bool = False, api_style: str = "openai"):
+                 tool_result_json: bool = False, api_style: str = "openai", text_tool_calls: bool = False):
         self.base_url = (base_url or os.environ.get("LLM_BASE_URL")
                          or os.environ.get("DEEPSEEK_BASE_URL") or DEFAULT_BASE_URL).rstrip("/")
         # DEEPSEEK_API_KEY is only a fallback for DeepSeek's own endpoint: falling back to it for an
@@ -93,6 +119,8 @@ class ChatClient:
         if api_style not in ("openai", "gemini"):
             raise APIError(f"unknown api_style {api_style!r}")
         self.api_style = api_style
+        # read tool calls written as plain JSON in the reply text when the server returns none (see extract_text_tool_calls)
+        self.text_tool_calls = text_tool_calls
         if api_style == "gemini" and "/v1" not in urllib.parse.urlparse(self.base_url).path:
             self.base_url += "/v1beta"
 
@@ -226,6 +254,12 @@ class ChatClient:
         calls = [ToolCall(c.get("id") or f"call_{i}", c["function"]["name"], c["function"].get("arguments") or "{}",
                           {k: v for k, v in c.items() if k not in ("id", "type", "function", "index")})
                  for i, c in enumerate(msg.get("tool_calls") or [])]
+        text = msg.get("content") or ""
+        finish = choice.get("finish_reason") or "stop"
+        if self.text_tool_calls and not calls and tools:
+            text, calls = extract_text_tool_calls(text, {t["function"]["name"] for t in tools})
+            if calls and finish == "stop":
+                finish = "tool_calls"
         u = data.get("usage") or {}
         usage = {
             "input_tokens": u.get("prompt_tokens", 0) or 0,  # includes cached prefix tokens
@@ -238,7 +272,7 @@ class ChatClient:
             "reasoning_tokens": (u.get("completion_tokens_details") or {}).get("reasoning_tokens", 0) or 0,
             "reasoning_chars": len(msg.get("reasoning_content") or ""),
         }
-        return ModelResponse(msg.get("content") or "", calls, choice.get("finish_reason") or "stop", usage,
+        return ModelResponse(text, calls, finish, usage,
                              model=data.get("model") or "", reasoning=msg.get("reasoning_content") or "")
 
     def _prepare(self, messages: list[dict]) -> list[dict]:

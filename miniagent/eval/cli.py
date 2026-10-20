@@ -195,7 +195,8 @@ def cmd_run(a):
         client = None if replay_only else ChatClient(api_key=key, base_url=base_url, extra_body=cfg.get("extra_body"),
                             timeout=cfg.get("api_timeout", 120.0), retries=cfg.get("api_retries", 3),
                             tool_result_json=bool(cfg.get("tool_result_json", False)),
-                            api_style=cfg.get("api_style", "openai"))
+                            api_style=cfg.get("api_style", "openai"),
+                            text_tool_calls=bool(cfg.get("text_tool_calls", False)))
     except APIError as e:
         raise SystemExit(f"error: {e}")
     if a.cassette:
