@@ -1,0 +1,18 @@
+{
+  "temperature": 0.0,
+  "max_steps": 30,
+  "max_tokens": 1024,
+  "context_limit": 20000,
+  "keep_recent": 8,
+  "disabled_tools": [],
+  "sandbox": true,
+  "log_reasoning": false,
+  "model": "default_model",
+  "api_key_env": "MLX_API_KEY",
+  "api_timeout": 900,
+  "api_retries": 1,
+  "name": "student-q4-v4-shortedit-final",
+  "base_url": "http://127.0.0.1:8081/v1",
+  "hypothesis": "PAIRED with student-q4-v3-final: identical config, tools and 48 dev tasks (temperature 0, one run each); only the adapter differs: trained on sft_train_v3.jsonl (teacher old_string shortened to the shortest unique snippet, 55% of the characters), same hyper-parameters, final step (456). Prediction fixed before running: edit_file calls whose old_string is not found in earlier output (76/94 in the baseline) go down, and passes exceed 4/48. Primary result is the final adapter; no checkpoint selection. Caveat: one extra validation example (8 vs 7), so val losses are not comparable.",
+  "text_tool_calls": true
+}

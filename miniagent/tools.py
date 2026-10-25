@@ -6,6 +6,7 @@ the model can recover instead of the run crashing.
 """
 from __future__ import annotations
 
+import difflib
 import os
 import re
 from dataclasses import dataclass
@@ -44,10 +45,12 @@ class Tool:
 
 
 class Workspace:
-    def __init__(self, root: str | Path, sandbox=None):
-        """`sandbox`: a miniagent.sandbox.Sandbox over `root`. With it, `bash` runs in the container instead of the host."""
+    def __init__(self, root: str | Path, sandbox=None, edit_hints: bool = False):
+        """`sandbox`: a miniagent.sandbox.Sandbox over `root`. With it, `bash` runs in the container instead of the host.
+        `edit_hints`: edit_file failures also show the closest real lines / file names, so the model can retry."""
         self.root = Path(root).resolve()
         self.sandbox = sandbox
+        self.edit_hints = edit_hints
         if not self.root.is_dir():
             raise ValueError(f"workspace is not a directory: {self.root}")
 
@@ -83,18 +86,54 @@ class Workspace:
     def edit_file(self, args: dict) -> str:
         p = self.resolve(args["path"])
         if not p.is_file():
-            raise ToolError(f"not a file: {args['path']}")
+            raise ToolError(f"not a file: {args['path']}" + (self._similar_files(p) if self.edit_hints else ""))
         old, new = args["old_string"], args["new_string"]
         if old == new:
-            raise ToolError("old_string and new_string are identical")
+            raise ToolError("old_string and new_string are identical" + (
+                "; nothing would change. Put the corrected text in new_string." if self.edit_hints else ""))
         text = p.read_text(encoding="utf-8")
         n = text.count(old)
         if n == 0:
-            raise ToolError("old_string not found (must match exactly, including whitespace)")
+            raise ToolError("old_string not found (must match exactly, including whitespace)"
+                            + (self._closest_lines(text, old) if self.edit_hints else ""))
         if n > 1:
-            raise ToolError(f"old_string matches {n} places; include more context to make it unique")
+            where = ""
+            if self.edit_hints:
+                lines = [text.count("\n", 0, m.start()) + 1 for m in re.finditer(re.escape(old), text)]
+                where = f" (at lines {', '.join(map(str, lines[:8]))})"
+            raise ToolError(f"old_string matches {n} places{where}; include more context to make it unique")
         p.write_text(text.replace(old, new, 1), encoding="utf-8")
         return f"edited {args['path']}"
+
+    def _similar_files(self, p: Path) -> str:
+        d = p.parent if p.parent.is_dir() else self.root
+        names = sorted(f.name for f in d.iterdir() if f.is_file())
+        close = difflib.get_close_matches(p.name, names, n=3, cutoff=0.4)
+        rel = d.relative_to(self.root).as_posix()
+        return (f". Did you mean: {', '.join(close)}?" if close else "") + \
+            f" Files in {rel}: {', '.join(names[:20])}" if names else ""
+
+    @staticmethod
+    def _closest_lines(text: str, old: str) -> str:
+        """The file lines most similar to `old`, numbered, so the model can copy the exact text."""
+        lines, want = text.splitlines(), old.splitlines() or [old]
+        k = min(len(want), len(lines), 12)
+        if k == 0:
+            return ""
+        norm = lambda ls: "\n".join(l.strip() for l in ls)
+        target, best, at = norm(want[:k]), 0.0, 0
+        for i in range(len(lines) - k + 1):
+            r = difflib.SequenceMatcher(None, norm(lines[i:i + k]), target).quick_ratio()
+            if r > best:
+                best, at = r, i
+        if best >= 0.5:
+            best = difflib.SequenceMatcher(None, norm(lines[at:at + k]), target).ratio()
+        if best < 0.5:
+            return ". No similar text in this file; read_file it first and copy the lines you want to change."
+        shown = "\n".join(f"{i:>6}\t{l}" for i, l in enumerate(lines[at:at + k], start=at + 1))
+        same = norm(lines[at:at + k]) == target
+        note = "differs only in indentation/whitespace" if same else "closest match in the file"
+        return f". {note} (lines {at + 1}-{at + k}):\n{shown}"
 
     def bash(self, args: dict) -> str:
         cmd = args["command"]

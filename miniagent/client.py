@@ -55,7 +55,8 @@ def extract_text_tool_calls(text: str, tool_names: set[str]) -> tuple[str, list[
     embeddings of <tool_call> / </tool_call> are untrained placeholders, practically equal to that of token 124, and the output
     layer is tied to the embeddings, so a fine-tuned model that has learned the whole format still emits token 124 (decoded as
     U+FFFD) where the markers belong, and the server never sees a tool call. Only objects {"name": <an offered tool>,
-    "arguments": {...}} count; stray U+FFFD characters and marker strings are dropped from the remaining text."""
+    "arguments": {...}} count; stray U+FFFD characters and marker strings ([TOOL_CALL] too, the plain-text wrapper of prompts/chat_template_plain.jinja)
+    are dropped from the remaining text."""
     dec, calls, out, i = json.JSONDecoder(), [], [], 0
     while i < len(text):
         if text[i] == "{":
@@ -71,6 +72,7 @@ def extract_text_tool_calls(text: str, tool_names: set[str]) -> tuple[str, list[
         out.append(text[i])
         i += 1
     cleaned = "".join(out).replace("\ufffd", "").replace("<tool_call>", "").replace("</tool_call>", "")
+    cleaned = re.sub(r"\[/?TOOL_CALL\]", "", cleaned)             # plain-text wrapper of prompts/chat_template_plain.jinja
     return re.sub(r"\n{3,}", "\n\n", cleaned).strip() if calls else text, calls
 
 

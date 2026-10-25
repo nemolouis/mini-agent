@@ -41,6 +41,18 @@ def to_template_messages(messages: list[dict]) -> list[dict]:
     return out
 
 
+def use_template(tok, path: str | None):
+    """Render the conversations with the chat template in `path` instead of the model's own (see prompts/chat_template_plain.jinja)."""
+    if not path:
+        return tok
+    text = Path(path).read_text(encoding="utf-8")
+    tok.chat_template = text
+    if tok.chat_template != text:                              # mlx_lm's TokenizerWrapper: the template lives on the wrapped Hugging Face tokenizer
+        tok._tokenizer.chat_template = text
+    assert tok.chat_template == text, "the tokenizer did not take the chat template"
+    return tok
+
+
 def encode(row: dict, tokenizer) -> tuple[list[int], list[int]]:
     """(token ids of the whole conversation, 0/1 mask: 1 on the tokens of assistant turns)."""
     ids = tokenizer.apply_chat_template(to_template_messages(row["messages"]), tools=row.get("tools"), tokenize=True,
@@ -76,7 +88,7 @@ def build(rows, tokenizer, max_len: int | None):
 
 def cmd_check(a):
     from transformers import AutoTokenizer
-    tok = AutoTokenizer.from_pretrained(a.model)
+    tok = use_template(AutoTokenizer.from_pretrained(a.model), a.chat_template)
     rows = load_rows(a.data, a.limit)
     data, dropped, lens = build(rows, tok, None)
     lens_np = np.array(lens)
@@ -107,6 +119,7 @@ def cmd_selftest(a):
     import mlx.core as mx
     from mlx_lm.utils import load
     model, tok = load(a.model)
+    use_template(tok, a.chat_template)
     rows = load_rows(a.data, 12)
     data, _, _ = build(rows, tok, 8192)
     for ids, m in data[:5]:
@@ -126,6 +139,7 @@ def cmd_gradcheck(a):
     from mlx_lm.utils import load
     limit_memory(mx, 8.0, 1.0)
     model, tok = load(a.model)
+    use_template(tok, a.chat_template)
     data, _, _ = build(load_rows(a.data, 40), tok, 3300)
     ids, m = sorted(data, key=lambda x: len(x[0]))[0]
     model.freeze()
@@ -282,6 +296,7 @@ def cmd_train(a):
 
     limit_memory(mx, a.memory_limit_gb, a.cache_limit_gb)
     model, tok = load(a.model)
+    use_template(tok, a.chat_template)
     rows = load_rows(a.data, a.limit)
     random.Random(a.seed).shuffle(rows)
     n_val = max(2, int(len(rows) * a.val_frac))
@@ -301,7 +316,7 @@ def cmd_train(a):
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     save_config({"model": str(a.model), "fine_tune_type": "lora", "num_layers": a.lora_layers, "lora_parameters": lora,
-                 "max_seq_length": a.max_len, "data": a.data, "seed": a.seed}, out / "adapter_config.json")
+                 "max_seq_length": a.max_len, "data": a.data, "seed": a.seed, "chat_template": a.chat_template}, out / "adapter_config.json")
 
     args = TrainingArgs(batch_size=a.batch_size, iters=iters, val_batches=min(a.val_batches, max(1, len(val_data) // a.batch_size)),
                         steps_per_report=a.report_every, steps_per_eval=a.eval_every, steps_per_save=a.save_every,
@@ -348,6 +363,7 @@ def cmd_memtest(a):
     from mlx_lm.utils import load
     limit_memory(mx, a.memory_limit_gb, a.cache_limit_gb)
     model, tok = load(a.model)
+    use_template(tok, a.chat_template)
     data, _, _ = build(load_rows(a.data), tok, a.max_len)
     print(f"{len(data)} examples <= {a.max_len} tokens; loss positions per sequence {fit_loss_budget(data)}")
     model.freeze()
@@ -391,6 +407,7 @@ def main():
         p.add_argument("--model", required=True)
         p.add_argument("--data", required=True)
         p.add_argument("--limit", type=int)
+        p.add_argument("--chat-template", help="jinja file used instead of the model's chat template (train, check and serve must agree)")
     mt = sub._name_parser_map["memtest"]
     mt.add_argument("--max-len", type=int, default=4096)
     mt.add_argument("--clip", type=float, default=1.0)
