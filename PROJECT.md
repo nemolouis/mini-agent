@@ -16,7 +16,7 @@
 
 | 优先级 | 项目 | 内容 | 验收标准 | 状态 |
 |---|---|---|---|---|
-| 1 | **M1 最小 agent** | 手写 tool use 循环；read/write/edit/bash/grep；最大步数、权限确认、危险命令拦截、上下文压缩 | 真实任务上完成 bug 修复；有自动化测试；失败案例分析 | **完成**：全仓库 345 个测试；15 条失败案例见 [docs/failure_cases.md](docs/failure_cases.md) |
+| 1 | **M1 最小 agent** | 手写 tool use 循环；read/write/edit/bash/grep；最大步数、权限确认、危险命令拦截、上下文压缩 | 真实任务上完成 bug 修复；有自动化测试；失败案例分析 | **完成**：全仓库 357 个测试；15 条失败案例见 [docs/failure_cases.md](docs/failure_cases.md) |
 | 2 | **M2 评测 harness** | 任务集 + 自动判分；多模型/多配置扫描；成功率、步数、token 成本、延迟、失败归因 | 见"评测设计" | **基本完成**，见下 |
 | 3 | **M3 轨迹回放** | 每次运行完整落盘；网页回放与并排对比；按条件过滤导出 | 任意一次运行可回放；两次运行可并排对比 | **完成**（`miniagent-eval view`）；未做"按条件过滤导出" |
 | 4 | **M4 MCP server** | 1 个小而完整的 MCP server，接入 agent；越界路径与越权调用有测试 | 越权测试通过 | **完成**：手写 MCP 笔记服务器 + 客户端，越界/越权/协议畸形输入有自动化测试，并用变异检验确认测试有效；未用官方客户端做互操作验证；见 [docs/m4_design.md](docs/m4_design.md) |

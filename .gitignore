@@ -19,3 +19,10 @@ results/*/workspaces/
 gen_tasks/g-*/
 data/*.jsonl
 data/sft_train_v1*
+
+# personal interview preparation (first-person scripts), never published
+导学-*.md
+面经-*.md
+
+# personal career plan (kept local only)
+docs/Agent 方向个人项目清单：中层与下层.md
