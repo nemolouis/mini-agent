@@ -281,3 +281,12 @@ DeepSeek flash,温度 0.7,计划 257 道 train 题 × 2 次 = 514 次运行,**�
 
 **方案 1 已实现(2026-10-25,只改代码和测试,没训练)**:`prompts/chat_template_plain.jinja`;`scripts/sft_mlx.py` 的 `check/train/selftest/gradcheck/memtest` 新增 `--chat-template`(写入 `adapter_config.json`);`miniagent/client.py` 清掉 `[TOOL_CALL]` 包装行;`scripts/make_plain_model.py` 生成 `models/<模型>-plain`(权重符号链接 + 自己的 `chat_template.jinja`,已生成 4 位那个);`scripts/serve_mlx.py` 启动前核对"适配器训练用的模板 = 模型目录里的模板",不一致就拒绝启动。测试:全套 373 个通过、1 个跳过(token 测试需要 transformers,`.venv` 里没有,已在 `.venv-mlx` 里用 pytest 替身实际执行并通过,跳过的原因不是失败)。过程中断言抓到一个真 bug:HF 分词器自己也有 `_tokenizer` 属性(Rust 对象),第一版把模板设错了地方,已修正并在 HF 分词器和 mlx_lm 的 TokenizerWrapper 上都验证。新模板下 `check` 的结果:max-len 4096 内 155 条(原 160)。
 **训练命令(未执行)**:在原命令上加 `--chat-template prompts/chat_template_plain.jinja`;服务用 `--model models/qwen2.5-coder-1.5b-instruct-4bit-plain`。
+
+### 新格式(普通文本工具调用)的评测结果(2026-10-26)
+
+**训练**:`adapters/qwen15q4-v5-plain`,v2 数据 + `prompts/chat_template_plain.jinja`,超参同第三次;max-len 4096 内 144 条训练/7 条验证(第三次 152/7),432 步,无发散,训练损失 0.99 → 约 0.35,验证 0.994 → 0.522(第 49 步)。第一次启动后手动停过一次(第 60 步),已原样保留为 `adapters/qwen15q4-v5-plain-stopped-step60`,正式结果来自从头重跑的这一次。
+**评测**(dev 48 题,配置 `configs/student-q4-v5-plain-final.json`,其余同基线):**通过 0/48**,基线 4/48(退步 4 题、改进 0 题,McNemar 精确检验 p=0.125,不显著)。失败类别:no_edit 31、max_steps 15、max_tokens 2。
+**预测的第一部分成立,第二部分不成立**:(1) "48/48 运行都发出工具调用"成立:48/48,共 623 次调用,平均 13.7 步(基线 333 次、5.9 步;v4 和第 300 步检查点是 0 次)。格式本身的问题确认已解决。(2) "通过数高于 4/48"不成立:0/48。
+**为什么没通过**:623 次调用里 bash 598、read_file 24、**edit_file 只有 1 次**(基线 94 次);连续两次完全相同的调用 334 次(54%),典型轨迹是反复跑同一条 `pytest … | tail`,直到步数用完。也就是说模型现在稳定地"会调用工具",但卡在重复探索里,没有走到修改。贪心解码(温度 0)本来就容易陷入重复,基线失败后重复同一条 edit 调用(56/59)也是同一类现象,这里的差别是出现在了更早的探索阶段。
+**含义**:(1) 工具调用格式不稳定是真实存在的一层问题,已修好;修好后暴露出下一层:学生在行为层面不会从探索转向修改。(2) 基线 v3 最终的 4/48 依赖的是一个脆弱状态,不应当当作稳定能力来引用。(3) 这些都是单次、温度 0、48 题的结果,不能推出"新格式不如旧格式"——两次训练的数据条数、模板都不同,也没有多次重复。
+**没验证的猜测**:训练只用了 144 条(510 条里 70% 因超过 4096 token 被丢弃,留下的偏短、偏简单),可能是行为层面学不会的主因;可行方向是在训练数据里把过长的工具输出截断,让更多样本落进长度限制(不改变轨迹结构,需要检查不破坏 old_string 的可见性)。
