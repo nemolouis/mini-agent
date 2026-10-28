@@ -7,10 +7,12 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+serve = ["fastapi>=0.110", "uvicorn>=0.30"]   # optional HTTP service (miniagent-serve); the agent itself needs nothing
 
 [project.scripts]
 miniagent = "miniagent.cli:main"
 miniagent-eval = "miniagent.eval.cli:main"
+miniagent-serve = "miniagent.server:main"
 
 [build-system]
 requires = ["setuptools>=68"]

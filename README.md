@@ -17,7 +17,7 @@
 
 | 部分 | 状态 | 说明 |
 |---|---|---|
-| M1 agent 主循环与工具 | 完成 | 见"特性"；全仓库 373 个测试（不调用模型；需要 Docker 的测试在没有 Docker 时自动跳过） |
+| M1 agent 主循环与工具 | 完成 | 见"特性"；全仓库 391 个测试（不调用模型；需要 Docker 的测试在没有 Docker 时自动跳过） |
 | M2 评测 harness | 完成 | 任务集、dev/test 划分、隐藏测试、规则化判分、配对对比、断点续跑；实验结果见"结果"；test 集未跑 |
 | M3 轨迹回放 | 完成 | `miniagent-eval view`：浏览所有运行、逐步回放、两次运行并排对比；未做按条件导出轨迹 |
 | M4 MCP server | 完成 | 手写的 MCP 笔记服务器 + 客户端 + 越界/越权测试（见"MCP 服务器"）；未用官方客户端做互操作验证 |
@@ -54,7 +54,7 @@
 ```bash
 git clone <this-repo> && cd mini-agent
 python3 -m venv .venv && source .venv/bin/activate
-pip install -e ".[dev]"
+pip install -e ".[dev]"          # 想用 HTTP 服务再加：pip install -e ".[dev,serve]"
 
 pytest -q                          # 单元测试，不调用模型
 
@@ -125,6 +125,27 @@ miniagent "规划会议上定的月度预算是多少？" -w examples -y -m deep
 - **测试**（166 个，`tests/test_mcp_*.py`）：协议两代、各错误码和畸形输入；路径攻击（数十种写法，用真实的符号链接、硬链接、FIFO）；用钩子在"检查"和"打开"之间换文件的 TOCTOU；越权调用；客户端对 8 种行为异常的假服务端（旧版、静默、版本不匹配、超时、stderr 洪水、崩溃、拒绝退出、分页）；agent 集成，包括"被笔记诱导的模型"。我还做了**变异检验**：逐个去掉防御共 18 次，15 次让测试失败，3 次存活（都是因为有冗余防线，详见设计文档）。
 
 不是沙箱：服务端以你的用户身份运行，上面都是应用层的检查，一个绕过检查的漏洞仍可读到你能读的文件；根目录应使用专用目录；硬链接检测靠 `st_nlink`（会误伤极少数合法情况）；提示注入没有被"解决"，只是让服务端的边界不依赖模型的判断。
+
+## HTTP 服务（可选）
+
+把 `Agent.run` 包成一个 FastAPI 服务（`miniagent/server.py`）。agent 本身仍然零依赖，服务是可选依赖：`pip install -e ".[serve]"`。
+
+```bash
+export LLM_API_KEY="..."                       # 模型密钥只放环境变量
+miniagent-serve --workspace demo=path/to/repo  # 默认只监听 127.0.0.1，bash 跑在 Docker 沙箱里
+```
+
+| 接口 | 作用 |
+|---|---|
+| `POST /runs` `{task, workspace, model?, max_steps?}` | 提交任务，返回 `run_id`（202） |
+| `GET /runs/{id}` | 状态、最终回复、token 数、改动的文件 |
+| `GET /runs/{id}/events?after=N` | 轨迹事件（JSON，可轮询） |
+| `GET /runs/{id}/stream` | 同样的事件，用 SSE 实时推送到运行结束 |
+| `GET /runs/{id}/patch` | agent 改动的 unified diff |
+
+一个会让模型执行命令的服务就是远程执行入口，所以默认值偏保守：客户端**不能传路径**，`workspace` 只是启动时白名单里的名字，每次运行在该目录的**私有拷贝**上进行，原目录不会被改；bash 只在 Docker 沙箱里跑，`--no-sandbox` 时 bash 直接被拒绝；非本机地址必须设置 `MINIAGENT_API_KEY`；任务长度、步数、模型名、排队数量都有上限。18 个测试覆盖这些行为，并对服务代码做了 9 处故意破坏（改成在原目录上运行、去掉认证、放开 bash 等），测试全部能发现。
+
+**局限**：没有用真实模型做过端到端调用（没有密钥，只用脚本化的假模型测过，并用真实的 uvicorn 进程验证了启动、认证、参数校验和建任务）；运行记录保存在内存里，重启后接口里查不到（轨迹文件还在磁盘上）；只有单进程、没有持久化队列；不是生产级服务，它的作用是把循环服务化，并展示这类入口该有的安全边界。
 
 ## M5：从可验证任务到 SFT（做到一半）
 
@@ -241,6 +262,7 @@ python3 -m venv .venv-mlx && .venv-mlx/bin/pip install --only-binary :all: mlx-l
 mini-agent/
 ├── miniagent/          # agent 主循环、工具、安全、压缩、轨迹、模型客户端、沙箱、录制回放
 │   ├── eval/           # 评测 harness；view.py + viewer/index.html 是回放页；export.py 导出 SFT 数据
+│   ├── server.py       # 可选的 HTTP 服务（FastAPI），见"HTTP 服务"
 │   ├── mcp/            # MCP 笔记服务器、路径安全、客户端
 │   └── taskgen/        # 变异式任务生成器（变异算子、测试拆分、PyPI 下载与安全解压）
 ├── configs/            # 评测配置（模型、协议、步数、提示词、价格表）
