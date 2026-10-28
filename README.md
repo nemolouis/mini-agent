@@ -4,7 +4,7 @@
 
 > 状态：M1–M4（agent、评测、回放、MCP）已完成；M5（可验证任务生成 → 轨迹合成 → SFT → 评测）**闭环跑通了一圈，效果很小且统计上不显著**：任务、沙箱、轨迹合成、导出、LoRA 训练（第三次成功，前两次发散）、训练前后评测都做了。在 dev 的 48 题（两个未见过的库）上，学生模型从 **0/48 到 4/48**（Fisher/McNemar p≈0.12，**不显著**）；明确的是行为变化：训练前一次工具调用都没有，训练后 48 次都在用工具、8 次改了文件。数据消融和 test 集没做。**之后又做了三轮改进（edit_file 提示、缩短 old_string、普通文本工具调用格式），都没有提高通过数；最有价值的发现是 `<tool_call>` 标记 token 未训练导致工具调用不稳定，4/48 不应当作稳定能力引用，下层部分到此收工（理由见 [docs/next_phase_plan.md](docs/next_phase_plan.md) 末尾）。** 下面所有数字都来自真实运行，样本小的地方标了区间；两个 test 集（手写题 17 题、生成题 47 题）**都还没有跑过**。范围与验收标准见 [PROJECT.md](PROJECT.md)，M5 的计划与逐步记录见 [docs/next_phase_plan.md](docs/next_phase_plan.md)。
 
-**这个项目是什么**：一个标准库实现的 coding agent（`miniagent/` 约 4.1k 行，无 agent 框架、无第三方 SDK；只有训练脚本 `scripts/sft_mlx.py` 用到 MLX，装在单独的环境里），加上能回答"改动到底有没有用"的评测与回放工具，以及一个按"参数是攻击者输入"设计的 MCP 服务器。它的价值不在于分数，而在于**每个结论都有运行记录、预测先写后跑、预测错了也记下来**：15 条失败案例里有 loop 自己的 bug、harness 的 bug、我出的题的 bug，也有模型的行为问题。
+**这个项目是什么**：一个标准库实现的 coding agent（`miniagent/` 约 4.2k 行（不含可选的服务），无 agent 框架、无第三方 SDK；只有可选的 `miniagent/server.py` 用到 FastAPI、训练脚本 `scripts/sft_mlx.py` 用到 MLX，装在单独的环境里），加上能回答"改动到底有没有用"的评测与回放工具，以及一个按"参数是攻击者输入"设计的 MCP 服务器。它的价值不在于分数，而在于**每个结论都有运行记录、预测先写后跑、预测错了也记下来**：15 条失败案例里有 loop 自己的 bug、harness 的 bug、我出的题的 bug，也有模型的行为问题。
 
 ```
 任务（repo + 隐藏测试） ─▶ agent 循环 ─▶ 轨迹 JSONL ─▶ 规则化判分 / 失败归因 ─▶ 报告、配对对比
@@ -24,7 +24,8 @@
 | M5-a 回放、沙箱、任务生成 | 完成 | 确定性回放；Docker 沙箱（有逃逸测试）；变异式任务生成，352 题全部在沙箱里通过 verify |
 | M5-b teacher 轨迹合成与导出 | 完成 | DeepSeek flash 在 257 道 train 题上 2 次采样，513/514 通过，导出 510 条训练样本 |
 | M5-c LoRA 训练 | 完成（第 3 次） | 本机 MLX、4 位基础权重、只对助手轮算 loss、只训练最后 16 层。前两次发散（原因线索见 docs/next_phase_plan.md）；第三次 456 步没有发散，验证损失 2.10 → 0.74 |
-| M5-d 训练后评测与消融 | 评测做了，消融和 test 没做 | dev：基础 0/48，训练后 4/48（p≈0.12，不显著）。34 个 `no_edit` 里 `edit_file` 29/31 次报错、20 个仍声称已修好。后续三轮改进实验（edit_file 提示、缩短 old_string、普通文本工具调用格式）都没有提高通过数，见"后续实验" |
+| M5-d 训练后评测与消融 | 评测做了，下层已收工；消融和 test 没做 | dev：基础 0/48，训练后 4/48（p≈0.12，不显著）。34 个 `no_edit` 里 `edit_file` 29/31 次报错、20 个仍声称已修好。后续三轮改进实验（edit_file 提示、缩短 old_string、普通文本工具调用格式）都没有提高通过数，见"后续实验" |
+| HTTP 服务（可选） | 完成 | `miniagent/server.py`（FastAPI，`pip install -e ".[serve]"`）：提交任务、查状态、轨迹轮询/SSE、取 diff；路径白名单 + 在目录拷贝上运行 + bash 只进沙箱；18 个测试；没用真实模型端到端跑过（见"HTTP 服务"） |
 
 ## 主要发现
 
@@ -45,6 +46,7 @@
 - **SFT 数据导出**（`miniagent-eval export`）：把通过的运行写成聊天格式 JSONL（system、tools、带 tool_calls 的 assistant、tool 消息）。只留隐藏测试通过且自己结束、没改测试、没发生压缩、没有非法工具参数的运行；默认只导出 `train` 划分（`--splits` 可改；dev、test 和没有划分的手写题都不会进训练数据）；精确重复去重；每种跳过原因都计数。`run_start` 现在记录系统提示词全文和工具定义；`log_reasoning: true` 时记录模型的可见思考。
 - **Docker 沙箱**（`miniagent/sandbox.py`，设计见 [docs/m5_sandbox_taskgen_design.md](docs/m5_sandbox_taskgen_design.md)）：`miniagent --sandbox`、`miniagent-eval run --sandbox`（或配置里 `"sandbox": true`）让 `bash` 和判分用的测试都跑在容器里：断网、根文件系统只读、去掉全部 capability、非 root、不传任何环境变量（拿不到 API key）、限制进程数/内存/CPU，只挂载工作区。每个运行一个长驻容器、每条命令一次 `docker exec`；命令超时或容器出问题时换新容器；输出有上限，洪水不会撑爆宿主内存。镜像用 `miniagent-eval sandbox-build` 构建，`sandbox-clean` 清理崩溃遗留的容器。沙箱自身故障（Docker 挂了等）让运行以 error 结束、不计入通过率，不会当作工具结果显示给模型。21 个测试（其中 18 个对真实容器做逃逸检查），对每个安全选项做过变异检验。**不是虚拟机**：容器与宿主共享内核。
 - **变异式任务生成**（`miniagent-eval gen`，`miniagent/taskgen/`）：对"能通过自带测试的种子库"注入一个小 bug（比较/算术/布尔运算符、条件取反、整数常量±1、break↔continue、删除语句），只在能通过全部筛选时才保留为任务：能编译、原代码通过全部测试、可见测试至少失败一个、失败数不多、两次结果一致且不超时、同一失败模式的任务有数量上限、构造出的任务本身再核对一遍。可见测试是种子测试的随机子集，隐藏测试是完整文件。不调用任何模型。生成的任务放在 `gen_tasks/`（不进入 `tasks/` 与既有的 dev/test 划分），**按种子库划分** train/dev/test，导出 SFT 数据默认只取 train。
+- **HTTP 服务**（可选，`miniagent/server.py`，见"HTTP 服务"）：把 `Agent.run` 包成 FastAPI 接口，路径白名单、在拷贝上运行、bash 只进沙箱、默认只监听本机。
 - **模型接入**：标准库实现，无第三方 SDK。两种协议：OpenAI 兼容的 chat completions（DeepSeek、智谱 GLM 已验证）和 **Gemini 原生 `generateContent`**（含思考签名的保存与回放，可经转发型中转使用）。配置文件里用 `base_url` / `base_url_env` / `api_key_env` / `extra_body` / `api_style` 指定，密钥永远从环境变量读
 
 **尚未实现**（避免误解）：参数 JSON schema 校验、并行工具调用、按条件导出轨迹到网页之外的格式（SFT 导出已有，见上）、HTTP 传输的 MCP。
@@ -147,13 +149,13 @@ miniagent-serve --workspace demo=path/to/repo  # 默认只监听 127.0.0.1，bas
 
 **局限**：没有用真实模型做过端到端调用（没有密钥，只用脚本化的假模型测过，并用真实的 uvicorn 进程验证了启动、认证、参数校验和建任务）；运行记录保存在内存里，重启后接口里查不到（轨迹文件还在磁盘上）；只有单进程、没有持久化队列；不是生产级服务，它的作用是把循环服务化，并展示这类入口该有的安全边界。
 
-## M5：从可验证任务到 SFT（做到一半）
+## M5：从可验证任务到 SFT（闭环跑通一圈，已收工）
 
 目标是补上"下层"的一条完整链路：**可验证任务 → teacher 轨迹 → SFT → 用同一套 harness 评测前后差异**。逐步记录、每个决定的理由和被推翻的假设见 [docs/next_phase_plan.md](docs/next_phase_plan.md)，沙箱与生成器的设计见 [docs/m5_sandbox_taskgen_design.md](docs/m5_sandbox_taskgen_design.md)。
 
 ```
 种子库(seeds/) ─▶ 变异+筛选 ─▶ 352 道题(按种子库分 train/dev/test) ─▶ teacher 采样 ─▶ 导出(只取 train) ─▶ LoRA ─▶ 评测(dev/test: 未见过的库)
-                  (沙箱内)       每道题都过 verify                     (DeepSeek flash)    510 条            (第3次成功)  (dev 0→4/48)
+                  (沙箱内)       每道题都过 verify                     (DeepSeek flash)    510 条            (第3次成功)  (dev 0→4/48,不稳定)
 ```
 
 ```bash
@@ -296,6 +298,7 @@ agent 会执行模型生成的命令，存在风险：
 - 危险命令黑名单只是**纵深防御**，容易被绕过（如通过解释器间接执行），不能当作安全边界。
 - 文件工具限制在工作区内；不加 `--sandbox` 时 `bash` **不受**路径限制。
 - 默认在宿主机直接执行命令；加 `--sandbox` 才会进容器（见上）。不加时请只在不含敏感数据的目录运行，用临时副本做评测（`run_task.sh` 与 harness 都是这样做的）。
+- HTTP 服务（`miniagent-serve`）是远程执行入口：客户端只能选启动时白名单里的工作区名，每次在拷贝上运行；bash 只在 Docker 沙箱里跑（`--no-sandbox` 时直接拒绝 bash）；默认只监听 127.0.0.1，非本机地址必须设置 `MINIAGENT_API_KEY`。它不是生产级服务：单进程、运行记录在内存里、没有限流和计费。
 - 使用第三方中转时，你的密钥和全部请求都会经过它。例如 `gemini-balance-lite` 会把选中的密钥完整写进函数日志；只用自己部署的实例和专用密钥。客户端不会把 `DEEPSEEK_API_KEY` 发给 DeepSeek 以外的主机。
 - Gemini 免费档的输入输出可能被 Google 用于改进产品并被人工审阅（条款原文），不要用来处理私有代码。
 
@@ -326,7 +329,8 @@ agent 会执行模型生成的命令，存在风险：
 - [x] M5-c LoRA 训练(前两次发散,第三次成功)
 - [x] M5-d 前半:训练前后评测(dev)
 - [x] M5-d 后续:edit_file 提示、缩短 old_string、普通文本工具调用格式(三轮均无通过数提升,见 docs/next_phase_plan.md)
-- [ ] M5-d 后半:数据消融、一次 test、对照实验(只改 Adam 偏差修正)、切窗训练
+- [x] HTTP 服务入口（FastAPI，可选依赖，18 个测试）
+- [ ] 已决定不做（下层 2026-10-28 收工，理由见 docs/next_phase_plan.md 末尾）：数据消融、一次 test、对照实验(只改 Adam 偏差修正)、切窗训练
 - [ ] 上下文工程(可选):摘要 vs 结构化笔记
 
 ## 许可证

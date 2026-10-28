@@ -2,6 +2,8 @@
 
 面向"只会 Python 基础语法"的读者。每个 `.py` 文件一份讲解,按**从简单到复杂、从底层到上层**的顺序排列。
 
+> 这套讲解写于 M1–M2 阶段。之后 `tools.py`（`edit_hints`）、`client.py`（`text_tool_calls`、`[TOOL_CALL]` 清理）等又有改动，文中的行号可能对不上；`replay.py`、`sandbox.py`、`taskgen/`、`server.py` 等后加的模块这里没有讲解，它们的说明见 README 和 `docs/`。
+
 ## 阅读顺序
 
 | 顺序 | 文件 | 一句话 | 讲解 |

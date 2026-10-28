@@ -5,6 +5,8 @@ evidence, the root cause, and its status. The point is to separate **defects in 
 tasks, provider integration) from **behaviour of a particular model**, because only the first kind can be fixed
 and tested.
 
+> Cases 1-15 come from the M1-M2 work on the loop, the harness and the task set. Problems found later in the lower layer (three training runs, two of which diverged; the untrained `<tool_call>` marker tokens; the sandbox serving stale file versions; the failed `edit_file` hint experiment) are recorded chronologically in [next_phase_plan.md](next_phase_plan.md), not here.
+
 How to read it
 - Category: **S** agent loop / tools, **H** evaluation harness, **T** task design, **P** provider integration,
   **M** model behaviour.

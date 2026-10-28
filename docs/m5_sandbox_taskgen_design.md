@@ -1,6 +1,6 @@
 # 阶段 2 设计:Docker 沙箱 + 变异式任务生成器
 
-> 状态:沙箱与生成器已实现并通过测试;真实种子库待定(见第 3 节)。目标见 [next_phase_plan.md](next_phase_plan.md) 的阶段 2。写于 2026-10-18。
+> 状态:沙箱与生成器已实现并通过测试,并已用于全部 M5 实验(种子库最终定为 14 个 PyPI 小库 + 2 个手写,352 题,见 `seeds/SOURCES.json` 与 `docs/next_phase_plan.md`);本文是设计时的记录,个别数字以后者为准。目标见 [next_phase_plan.md](next_phase_plan.md) 的阶段 2。写于 2026-10-18。
 
 ## 0. 要解决的两个问题
 

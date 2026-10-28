@@ -33,6 +33,7 @@ Notes
 - Downloaded and then discarded (not included, their tests did not run in the sandbox or were missing): jmespath, jsonpointer, more-itertools, pytimeparse, sortedcontainers, toposort.
 - `textkit` and `seqtools` in `seeds/` were written for this project (MIT).
 - Not included here and obtained separately by the user: the model `Qwen/Qwen2.5-Coder-1.5B-Instruct` (Apache-2.0) and the
-  Python packages installed from PyPI (`mlx-lm` and its dependencies) for training.
+  Python packages installed from PyPI (`mlx-lm` and its dependencies) for training, and the optional HTTP service's packages
+  (`pip install -e ".[serve]"`: FastAPI, uvicorn; httpx for its tests).
 - Model outputs: trajectories in `results/` and `data/` were produced by third-party models (DeepSeek, Google Gemini, Zhipu GLM);
   the repository does not redistribute raw trajectories (see `.gitignore`). Check each provider's terms before publishing any.
