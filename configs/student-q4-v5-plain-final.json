@@ -1,0 +1,18 @@
+{
+  "temperature": 0.0,
+  "max_steps": 30,
+  "max_tokens": 1024,
+  "context_limit": 20000,
+  "keep_recent": 8,
+  "disabled_tools": [],
+  "sandbox": true,
+  "log_reasoning": false,
+  "model": "default_model",
+  "api_key_env": "MLX_API_KEY",
+  "api_timeout": 900,
+  "api_retries": 1,
+  "name": "student-q4-v5-plain-final",
+  "base_url": "http://127.0.0.1:8081/v1",
+  "hypothesis": "Tests the FORMAT alone: tool calls written as plain-text [TOOL_CALL] JSON [/TOOL_CALL] (prompts/chat_template_plain.jinja) instead of Qwen's untrained <tool_call> special tokens. Same data as the v3 run (sft_train_v2.jsonl, original old_string), same hyper-parameters, final step, same 48 dev tasks, temperature 0, one run each. Differences from the v3 run to keep in mind: 151 examples fit 4096 tokens (not 159), so slightly fewer steps. Prediction fixed before running: 48/48 runs make tool calls (v4 and step-300 made none), and passes exceed 4/48. If tool calls are made but passes stay at or below 4/48, the format fixed the instability but not the editing skill.",
+  "text_tool_calls": true
+}

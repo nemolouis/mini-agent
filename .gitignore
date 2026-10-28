@@ -26,3 +26,5 @@ data/sft_train_v1*
 
 # personal career plan (kept local only)
 docs/Agent 方向个人项目清单：中层与下层.md
+results/_logs/
+results/*WRONGTASKS*/
