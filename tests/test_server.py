@@ -96,6 +96,13 @@ def test_bad_requests_are_rejected(tmp_path, ws, body, code):
     assert start(c, **body).status_code == code
 
 
+def test_root_redirects_to_the_interactive_docs(tmp_path, ws):
+    svc, c = make(tmp_path, ws, api_key="s3cret")
+    r = c.get("/", follow_redirects=False)
+    assert r.status_code in (302, 307) and r.headers["location"] == "/docs"
+    assert c.get("/docs").status_code == 200                              # the page itself is reachable
+
+
 def test_unknown_run_is_404(tmp_path, ws):
     svc, c = make(tmp_path, ws)
     assert c.get("/runs/nope").status_code == 404 and c.get("/runs/nope/events").status_code == 404

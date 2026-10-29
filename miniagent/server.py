@@ -6,6 +6,7 @@
   GET  /runs/{id}/stream     the same events as server-sent events until the run ends
   GET  /runs/{id}/patch      unified diff of what the agent changed
   GET  /healthz
+  GET  /                        redirects to /docs, the interactive API page
 
 A service that lets a model run commands is a remote-execution surface, so the defaults are conservative:
 - a client never names a path: `workspace` is a key into the allow-list the server was started with, and every run
@@ -34,7 +35,7 @@ from typing import Callable
 
 try:
     from fastapi import Depends, FastAPI, Header, HTTPException, Query
-    from fastapi.responses import PlainTextResponse, StreamingResponse
+    from fastapi.responses import PlainTextResponse, RedirectResponse, StreamingResponse
     from pydantic import BaseModel, Field
 except ImportError as e:  # pragma: no cover - only without the optional dependency
     raise ImportError("miniagent.server needs FastAPI: pip install -e '.[serve]'") from e
@@ -195,6 +196,10 @@ def create_app(service: Service, api_key: str | None = None) -> FastAPI:
     def auth(x_api_key: str | None = Header(default=None)) -> None:
         if api_key and not (x_api_key and hmac.compare_digest(x_api_key.encode(), api_key.encode())):
             raise HTTPException(401, "missing or wrong X-API-Key")
+
+    @app.get("/", include_in_schema=False)
+    def root() -> RedirectResponse:
+        return RedirectResponse("/docs")                  # FastAPI's interactive API page
 
     @app.get("/healthz")
     def healthz() -> dict:
